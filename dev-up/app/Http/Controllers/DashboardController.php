@@ -40,7 +40,7 @@ class DashboardController extends Controller
             ->take(5)
             ->get();
 
-        return view('dashboard.index', compact(
+        return view('dashboard', compact(
             'user',
             'totalPoints',
             'currentLevel',
