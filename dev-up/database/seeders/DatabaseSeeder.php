@@ -15,18 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->command->info('Starting database seeding...');
+        
         $this->call([
+            UserSeeder::class,
             ChallengeSeeder::class,
+            FocusSessionSeeder::class,
+            SubmissionSeeder::class,
             BadgeSeeder::class,
+            NotificationSeeder::class,
+            FeedbackSeeder::class,
         ]);
 
-        // User::factory(10)->create();
-
-        if (!User::where('email', 'test@example.com')->exists()) {
-            User::factory()->create([
-                'name' => 'Test User',
-                'email' => 'test@example.com',
-            ]);
-        }
+        $this->command->info('Database seeding completed successfully!');
+        $this->command->info('');
+        $this->command->info('=== TEST USERS CREATED ===');
+        $this->command->info('Admin: admin@devup.com / password123');
+        $this->command->info('Formateur: achraf@devup.com / password123');
+        $this->command->info('Apprenant: mariam@devup.com / password123');
+        $this->command->info('==========================');
     }
 }
