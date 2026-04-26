@@ -79,5 +79,7 @@ class ChallengeSeeder extends Seeder
         foreach ($challenges as $challenge) {
             Challenge::create($challenge);
         }
+
+        $this->command->info('Challenges seeded successfully!');
     }
 }
