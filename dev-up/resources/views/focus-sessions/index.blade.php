@@ -1,96 +1,177 @@
-<x-app-layout>
-    <div class="container py-20">
-        <!-- Header -->
-        <div class="flex justify-between items-center mb-12">
-            <div>
-                <h1 class="text-4xl font-bold text-gray-900 mb-4">Focus Sessions</h1>
-                <p class="text-lg text-gray-600">Track your focus sessions and improve your productivity.</p>
-            </div>
-            <a href="{{ route('focus-sessions.create') }}" class="btn btn-primary btn-lg">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                New Session
-            </a>
-        </div>
-
-        <!-- Sessions Grid -->
-        @if($sessions->count() > 0)
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($sessions as $session)
-                    <div class="card card-interactive p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-lg font-semibold text-gray-900 mb-2">
-                                    {{ $session->focus_duration }} min Focus
-                                </h3>
-                                <p class="text-sm text-gray-600">
-                                    {{ $session->date_session->format('M j, Y • g:i A') }}
-                                </p>
-                            </div>
-                            <div class="text-right">
-                                <div class="text-2xl font-bold text-gray-900">{{ $session->focus_duration }}</div>
-                                <div class="text-xs text-gray-500">minutes</div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-4 text-sm text-gray-600">
-                                <div class="flex items-center gap-1">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-400">
-                                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                                        <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                                    </svg>
-                                    <span>{{ $session->focus_duration }} min</span>
-                                </div>
-                                <div class="flex items-center gap-1">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-400">
-                                        <rect x="3" y="6" width="10" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                                    </svg>
-                                    <span>{{ $session->break_duration }} min</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center justify-between">
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
-                                {{ $session->is_completed 
-                                    ? 'bg-green-100 text-green-800' 
-                                    : 'bg-yellow-100 text-yellow-800' }}">
-                                {{ $session->is_completed ? 'Completed' : 'In Progress' }}
-                            </span>
-                            
-                            <div class="flex gap-2">
-                                @if(!$session->is_completed)
-                                    <a href="{{ route('focus-sessions.timer', $session->id) }}" 
-                                       class="btn btn-primary btn-sm">
-                                        Resume
-                                    </a>
-                                @endif
-                                <a href="{{ route('focus-sessions.timer', $session->id) }}" 
-                                   class="btn btn-ghost btn-sm">
-                                    View
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div class="text-center py-20">
-                <div class="mb-8">
-                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="mx-auto text-gray-300">
-                        <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" fill="none"/>
-                        <path d="M32 20v12l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <h3 class="text-2xl font-semibold text-gray-900 mb-4">No focus sessions yet</h3>
-                <p class="text-gray-600 mb-8">Start your first focus session to build better concentration habits.</p>
-                <a href="{{ route('focus-sessions.create') }}" class="btn btn-primary btn-lg">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                    Start First Session
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV↑UP - Focus Sessions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-button:hover::before {
+            left: 100%;
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 40px rgba(102, 126, 234, 0.4),
+                0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -150px;
+            right: -150px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            top: 50%;
+            left: -75px;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .nav-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .session-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .session-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .status-completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .status-in-progress {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .status-abandoned {
+            background: linear-gradient(135deg, #dc2626, #7f1d1d);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
                 </a>
             </div>
         @endif
