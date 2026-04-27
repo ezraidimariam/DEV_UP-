@@ -1,257 +1,357 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Submit Solution - DEV↑UP</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV↑UP - Submit Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </style>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "inverse-on-surface": "#303038",
-                        "on-secondary": "#313030",
-                        "inverse-surface": "#e4e1ed",
-                        "tertiary-fixed": "#ffdcc5",
-                        "on-secondary-fixed-variant": "#474646",
-                        "tertiary": "#ffb783",
-                        "on-background": "#e4e1ed",
-                        "on-surface": "#e4e1ed",
-                        "on-primary": "#1000a9",
-                        "primary": "#c0c1ff",
-                        "primary-fixed-dim": "#c0c1ff",
-                        "on-primary-fixed-variant": "#2f2ebe",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-container": "#0d0096",
-                        "error": "#ffb4ab",
-                        "surface-container-low": "#1b1b23",
-                        "surface": "#13131b",
-                        "outline-variant": "#464554",
-                        "on-primary-fixed": "#07006c",
-                        "on-tertiary-fixed": "#301400",
-                        "on-tertiary-container": "#452000",
-                        "outline": "#908fa0",
-                        "surface-tint": "#c0c1ff",
-                        "surface-bright": "#393841",
-                        "error-container": "#93000a",
-                        "surface-container-highest": "#34343d",
-                        "surface-dim": "#13131b",
-                        "inverse-primary": "#494bd6",
-                        "background": "#13131b",
-                        "on-surface-variant": "#c7c4d7",
-                        "surface-container": "#1f1f27",
-                        "secondary-fixed": "#e5e2e1",
-                        "tertiary-fixed-dim": "#ffb783",
-                        "secondary-container": "#4a4949",
-                        "primary-fixed": "#e1e0ff",
-                        "on-secondary-container": "#bab8b7",
-                        "on-tertiary": "#4f2500",
-                        "on-error": "#690005",
-                        "tertiary-container": "#d97721",
-                        "secondary-fixed-dim": "#c8c6c5",
-                        "secondary": "#c8c6c5",
-                        "surface-variant": "#34343d",
-                        "on-secondary-fixed": "#1c1b1b",
-                        "surface-container-high": "#292932",
-                        "primary-container": "#8083ff",
-                        "on-tertiary-fixed-variant": "#703700",
-                        "surface-container-lowest": "#0d0d15"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "stack-lg": "64px",
-                        "container-max": "640px",
-                        "stack-sm": "16px",
-                        "gutter": "24px",
-                        "unit": "4px",
-                        "stack-md": "32px"
-                    },
-                    "fontFamily": {
-                        "body-sm": ["Inter"],
-                        "label": ["Inter"],
-                        "h1": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "h2": ["Inter"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                        "label": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    </script>
-    <style>
+        
         body {
-            min-height: max(884px, 100dvh);
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-button:hover::before {
+            left: 100%;
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 40px rgba(102, 126, 234, 0.4),
+                0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -150px;
+            right: -150px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            top: 50%;
+            left: -75px;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .nav-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .code-editor {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .line-numbers {
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .test-result-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+        }
+        
+        .test-result-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
         }
     </style>
 </head>
-<body class="bg-black text-on-surface font-body-md antialiased selection:bg-primary selection:text-on-primary">
-<!-- Navigation -->
-<header class="fixed top-0 w-full z-50 border-b border-white/10 bg-black">
-    <div class="flex justify-between items-center h-16 px-6 max-w-[640px] mx-auto w-full">
-        <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-indigo-500" data-icon="terminal">terminal</span>
-            <span class="text-indigo-500 font-black tracking-tighter text-xl">DEV↑UP</span>
-        </div>
-        <div class="flex items-center gap-4">
-            <a href="{{ route('dashboard') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">home</span>
-            </a>
-            <a href="{{ route('challenges.index') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">code</span>
-            </a>
-            <a href="{{ route('focus-sessions.index') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">timer</span>
-            </a>
-        </div>
+<body>
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
-</header>
 
-<!-- Main Content -->
-<main class="min-h-screen flex flex-col px-gutter pt-16">
-    <div class="w-full max-w-[640px] mx-auto flex flex-col">
-        <!-- Header -->
-        <div class="py-stack-lg">
-            <div class="flex items-center gap-4 mb-stack-md">
-                <a href="{{ route('challenges.show', $challenge->id) }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                </a>
-                <h1 class="font-h1 text-h1 text-on-surface">Submit Solution</h1>
-            </div>
-            <p class="font-body-md text-body-md text-on-surface-variant">Submit your solution for "{{ $challenge->title }}"</p>
-        </div>
-
-        <!-- Challenge Info Card -->
-        <div class="bg-surface-container border border-white/10 rounded-lg p-6 mb-stack-md">
-            <div class="flex items-start justify-between mb-4">
-                <div>
-                    <h2 class="font-h2 text-h2 text-on-surface mb-2">{{ $challenge->title }}</h2>
-                    <div class="flex items-center gap-4 text-sm text-on-surface-variant">
-                        <div class="flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[16px]">bolt</span>
-                            <span>{{ $challenge->points }} points</span>
-                        </div>
-                        <div class="flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[16px]">signal_cellular_alt</span>
-                            <span>{{ $challenge->difficulty }}</span>
-                        </div>
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+                        <i class="ri-code-s-slash-line text-white text-lg"></i>
                     </div>
+                    <h1 class="brand-font text-2xl font-black gradient-text">DEV↑UP</h1>
                 </div>
-                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium 
-                    {{ $challenge->difficulty === 'Easy' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 
-                       ($challenge->difficulty === 'Medium' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 
-                       ($challenge->difficulty === 'Hard' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : 
-                       'bg-purple-500/20 text-purple-400 border border-purple-500/30')) }}">
-                    {{ $challenge->difficulty }}
-                </span>
-            </div>
-        </div>
-
-        <!-- Submission Form -->
-        <form method="POST" action="{{ route('challenges.submit', $challenge->id) }}" class="space-y-stack-md">
-            @csrf
-            
-            <!-- Code Editor -->
-            <div class="bg-surface-container border border-white/10 rounded-lg p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <label class="font-label text-label uppercase text-on-surface-variant">Your Solution</label>
-                    <div class="flex items-center gap-2">
-                        <select name="language" class="bg-[#121212] border border-white/10 rounded px-3 py-1 text-on-surface text-sm focus:outline-none focus:ring-1 focus:ring-primary-container">
-                            <option value="php">PHP</option>
-                            <option value="javascript">JavaScript</option>
-                            <option value="python">Python</option>
-                            <option value="java">Java</option>
-                            <option value="cpp">C++</option>
-                        </select>
-                    </div>
-                </div>
-                <textarea 
-                    name="solution" 
-                    rows="15" 
-                    class="w-full bg-[#121212] border border-white/10 rounded-lg p-4 text-on-surface font-mono text-sm focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all placeholder:text-neutral-700"
-                    placeholder="// Write your solution here..."
-                    required>{{ old('solution') }}</textarea>
                 
-                @if ($errors->has('solution'))
-                    <div class="mt-2 text-error text-sm">
-                        {{ $errors->first('solution') }}
-                    </div>
-                @endif
+                <div class="flex items-center gap-6">
+                    <a href="{{ route('dashboard') }}" class="nav-item px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-all">
+                        <i class="ri-dashboard-line mr-2"></i>
+                        Dashboard
+                    </a>
+                    <a href="{{ route('challenges.index') }}" class="nav-item px-4 py-2 rounded-xl text-white hover:text-purple-300 transition-all">
+                        <i class="ri-trophy-line mr-2"></i>
+                        Challenges
+                    </a>
+                    <a href="{{ route('focus-sessions.index') }}" class="nav-item px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-all">
+                        <i class="ri-time-line mr-2"></i>
+                        Focus
+                    </a>
+                    <a href="{{ route('profile.edit') }}" class="nav-item px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-all">
+                        <i class="ri-user-line mr-2"></i>
+                        Profile
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
+                        @csrf
+                        <button type="submit" class="nav-item px-4 py-2 rounded-xl text-red-400 hover:text-red-300 transition-all">
+                            <i class="ri-logout-box-r-line mr-2"></i>
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
-
-            <!-- Additional Notes -->
-            <div class="bg-surface-container border border-white/10 rounded-lg p-6">
-                <label class="font-label text-label uppercase text-on-surface-variant mb-4 block">Notes (Optional)</label>
-                <textarea 
-                    name="notes" 
-                    rows="4" 
-                    class="w-full bg-[#121212] border border-white/10 rounded-lg p-4 text-on-surface text-sm focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all placeholder:text-neutral-700"
-                    placeholder="Any additional notes about your solution...">{{ old('notes') }}</textarea>
-            </div>
-
-            <!-- Submit Actions -->
-            <div class="flex gap-4">
-                <a href="{{ route('challenges.show', $challenge->id) }}" 
-                   class="flex-1 border border-white/10 bg-surface-container text-on-surface font-label py-4 rounded text-center hover:bg-white/5 transition-colors">
-                    Cancel
-                </a>
-                <button type="submit" 
-                        class="flex-1 bg-primary-container text-on-primary-container font-label py-4 rounded text-center hover:bg-opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                    <span>Submit Solution</span>
-                    <span class="material-symbols-outlined text-sm">send</span>
-                </button>
-            </div>
-        </form>
-
-        <!-- Guidelines -->
-        <div class="mt-stack-lg bg-surface-container border border-white/10 rounded-lg p-6">
-            <h3 class="font-h2 text-h2 text-on-surface mb-4">Submission Guidelines</h3>
-            <ul class="space-y-2 text-sm text-on-surface-variant">
-                <li class="flex items-start gap-2">
-                    <span class="material-symbols-outlined text-[16px] mt-0.5 text-primary">check_circle</span>
-                    <span>Ensure your code is properly formatted and follows best practices</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="material-symbols-outlined text-[16px] mt-0.5 text-primary">check_circle</span>
-                    <span>Test your solution thoroughly before submitting</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="material-symbols-outlined text-[16px] mt-0.5 text-primary">check_circle</span>
-                    <span>Include comments where necessary to explain complex logic</span>
-                </li>
-                <li class="flex items-start gap-2">
-                    <span class="material-symbols-outlined text-[16px] mt-0.5 text-primary">check_circle</span>
-                    <span>Make sure your solution handles edge cases</span>
-                </li>
-            </ul>
         </div>
-    </div>
-</main>
+    </nav>
 
-<!-- Visual Layering Element -->
-<div class="fixed top-0 left-1/2 -translate-x-1/2 w-[640px] h-screen -z-10 pointer-events-none opacity-20">
-    <div class="absolute top-0 w-full h-1/2 bg-gradient-to-b from-indigo-500/10 to-transparent"></div>
-</div>
+    <!-- Main Content -->
+    <main class="pt-24 px-6 pb-12">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header Section -->
+            <div class="glass-card rounded-2xl p-8 mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-white mb-2">Submit Solution</h1>
+                        <p class="text-gray-400">Submit your solution and test it against challenge requirements.</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="text-sm text-gray-500">Challenge:</div>
+                        <div class="text-lg font-medium text-white">{{ $challenge->title ?? 'Challenge Name' }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Form -->
+            <form method="POST" action="{{ route('challenges.submit', $challenge->id) }}" class="space-y-8">
+                @csrf
+
+                <!-- Code Editor Section -->
+                <div class="glass-card rounded-2xl p-8">
+                    <h2 class="text-xl font-semibold text-white mb-6">
+                        <i class="ri-code-line mr-2"></i>
+                        Your Solution
+                    </h2>
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="text-sm font-medium text-gray-300">Programming Language</label>
+                        <div class="flex items-center gap-2">
+                            <select name="language" class="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500">
+                                <option value="php">PHP</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="cpp">C++</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="code-editor rounded-xl overflow-hidden">
+                        <div class="flex">
+                            <div class="line-numbers px-4 py-4 text-gray-500 text-sm">
+                                1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
+                            </div>
+                            <div class="flex-1 p-4">
+                                <textarea 
+                                    name="solution"
+                                    class="w-full bg-transparent text-white outline-none resize-none font-mono text-sm"
+                                    rows="15"
+                                    placeholder="// Write your solution code here..."
+                                    required
+                                >{{ old('solution') }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    @if ($errors->has('solution'))
+                        <div class="test-result-error rounded-lg p-3 mt-4 text-sm">
+                            {{ $errors->first('solution') }}
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Additional Notes -->
+                <div class="glass-card rounded-2xl p-8">
+                    <h2 class="text-xl font-semibold text-white mb-6">
+                        <i class="ri-file-text-line mr-2"></i>
+                        Additional Notes (Optional)
+                    </h2>
+                    <textarea 
+                        name="notes"
+                        class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white outline-none resize-none text-sm focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        rows="4"
+                        placeholder="Any additional notes about your solution..."
+                    >{{ old('notes') }}</textarea>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex gap-4">
+                    <button type="submit" class="glow-button flex-1 px-8 py-4 rounded-xl text-white font-semibold">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            <i class="ri-send-plane-line text-xl"></i>
+                            Submit Solution
+                        </span>
+                    </button>
+                    <button type="button" onclick="window.history.back()" class="nav-item flex-1 px-8 py-4 rounded-xl text-gray-300 font-medium hover:text-white hover:bg-white/10">
+                        <i class="ri-arrow-left-line mr-2"></i>
+                        Back to Challenge
+                    </button>
+                </div>
+            </form>
+
+            <!-- Guidelines -->
+            <div class="glass-card rounded-2xl p-8 mt-8">
+                <h2 class="text-xl font-semibold text-white mb-6">
+                    <i class="ri-information-line mr-2"></i>
+                    Submission Guidelines
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="ri-check-line text-green-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-medium mb-1">Code Quality</h3>
+                                <p class="text-gray-400 text-sm">Ensure your code is properly formatted and follows best practices</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="ri-bug-line text-blue-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-medium mb-1">Testing</h3>
+                                <p class="text-gray-400 text-sm">Test your solution thoroughly before submitting</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="ri-message-3-line text-purple-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-medium mb-1">Documentation</h3>
+                                <p class="text-gray-400 text-sm">Include comments where necessary to explain complex logic</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-lg bg-orange-500/20 flex items-center justify-center flex-shrink-0">
+                                <i class="ri-shield-check-line text-orange-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-white font-medium mb-1">Edge Cases</h3>
+                                <p class="text-gray-400 text-sm">Make sure your solution handles all edge cases properly</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

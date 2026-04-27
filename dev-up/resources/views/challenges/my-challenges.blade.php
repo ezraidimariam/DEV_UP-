@@ -1,108 +1,183 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>My Challenges - DEV↑UP</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV↑UP - My Challenges</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </style>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "inverse-on-surface": "#303038",
-                        "on-secondary": "#313030",
-                        "inverse-surface": "#e4e1ed",
-                        "tertiary-fixed": "#ffdcc5",
-                        "on-secondary-fixed-variant": "#474646",
-                        "tertiary": "#ffb783",
-                        "on-background": "#e4e1ed",
-                        "on-surface": "#e4e1ed",
-                        "on-primary": "#1000a9",
-                        "primary": "#c0c1ff",
-                        "primary-fixed-dim": "#c0c1ff",
-                        "on-primary-fixed-variant": "#2f2ebe",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-container": "#0d0096",
-                        "error": "#ffb4ab",
-                        "surface-container-low": "#1b1b23",
-                        "surface": "#13131b",
-                        "outline-variant": "#464554",
-                        "on-primary-fixed": "#07006c",
-                        "on-tertiary-fixed": "#301400",
-                        "on-tertiary-container": "#452000",
-                        "outline": "#908fa0",
-                        "surface-tint": "#c0c1ff",
-                        "surface-bright": "#393841",
-                        "error-container": "#93000a",
-                        "surface-container-highest": "#34343d",
-                        "surface-dim": "#13131b",
-                        "inverse-primary": "#494bd6",
-                        "background": "#13131b",
-                        "on-surface-variant": "#c7c4d7",
-                        "surface-container": "#1f1f27",
-                        "secondary-fixed": "#e5e2e1",
-                        "tertiary-fixed-dim": "#ffb783",
-                        "secondary-container": "#4a4949",
-                        "primary-fixed": "#e1e0ff",
-                        "on-secondary-container": "#bab8b7",
-                        "on-tertiary": "#4f2500",
-                        "on-error": "#690005",
-                        "tertiary-container": "#d97721",
-                        "secondary-fixed-dim": "#c8c6c5",
-                        "secondary": "#c8c6c5",
-                        "surface-variant": "#34343d",
-                        "on-secondary-fixed": "#1c1b1b",
-                        "surface-container-high": "#292932",
-                        "primary-container": "#8083ff",
-                        "on-tertiary-fixed-variant": "#703700",
-                        "surface-container-lowest": "#0d0d15"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "stack-lg": "64px",
-                        "container-max": "640px",
-                        "stack-sm": "16px",
-                        "gutter": "24px",
-                        "unit": "4px",
-                        "stack-md": "32px"
-                    },
-                    "fontFamily": {
-                        "body-sm": ["Inter"],
-                        "label": ["Inter"],
-                        "h1": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "h2": ["Inter"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                        "label": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    </script>
-    <style>
+        
         body {
-            min-height: max(884px, 100dvh);
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-button:hover::before {
+            left: 100%;
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 40px rgba(102, 126, 234, 0.4),
+                0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .floating-shapes {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -150px;
+            right: -150px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            top: 50%;
+            left: -75px;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .nav-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .challenge-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .challenge-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .difficulty-easy {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .difficulty-medium {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .difficulty-hard {
+            background: linear-gradient(135deg, #dc2626, #7f1d1d);
+            color: white;
+        }
+        
+        .status-completed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        
+        .status-in-progress {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        
+        .status-abandoned {
+            background: linear-gradient(135deg, #dc2626, #7f1d1d);
+            color: white;
         }
     </style>
 </head>
@@ -116,88 +191,15 @@
         </div>
         <div class="flex items-center gap-4">
             <a href="{{ route('dashboard') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">home</span>
-            </a>
-            <a href="{{ route('challenges.index') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">code</span>
-            </a>
-            <a href="{{ route('focus-sessions.index') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                <span class="material-symbols-outlined">timer</span>
-            </a>
-        </div>
     </div>
-</header>
 
-<!-- Main Content -->
-<main class="min-h-screen flex flex-col px-gutter pt-16">
-    <div class="w-full max-w-[640px] mx-auto flex flex-col">
-        <!-- Header -->
-        <div class="py-stack-lg">
-            <div class="flex items-center gap-4 mb-stack-md">
-                <a href="{{ route('challenges.index') }}" class="text-on-surface-variant hover:text-on-surface transition-colors">
-                    <span class="material-symbols-outlined">arrow_back</span>
-                </a>
-                <h1 class="font-h1 text-h1 text-on-surface">My Challenges</h1>
-            </div>
-            <p class="font-body-md text-body-md text-on-surface-variant">Track your progress and completed challenges.</p>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="mb-stack-md">
-            <nav class="flex gap-4 border-b border-white/10">
-                <a href="{{ route('challenges.index') }}" 
-                   class="pb-3 px-1 border-b-2 border-transparent font-label text-label uppercase text-on-surface-variant hover:text-on-surface transition-colors">
-                    All Challenges
-                </a>
-                <a href="{{ route('challenges.my') }}" 
-                   class="pb-3 px-1 border-b-2 border-primary font-label text-label uppercase text-primary">
-                    My Challenges
-                </a>
-            </nav>
-        </div>
-
-        <!-- Challenges Grid -->
-        @if($userChallenges->count() > 0)
-            <div class="space-y-stack-md">
-                @foreach($userChallenges as $userChallenge)
-                    <div class="bg-surface-container border border-white/10 rounded-lg p-6 hover:border-white/20 transition-all">
-                        <div class="flex items-start justify-between mb-4">
-                            <div class="flex-1">
-                                <h3 class="font-h2 text-h2 text-on-surface mb-2">{{ $userChallenge->challenge->title }}</h3>
-                                <div class="flex items-center gap-4 text-sm text-on-surface-variant">
-                                    <div class="flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[16px]">bolt</span>
-                                        <span>{{ $userChallenge->challenge->points }} points</span>
-                                    </div>
-                                    <div class="flex items-center gap-1">
-                                        <span class="material-symbols-outlined text-[16px]">schedule</span>
-                                        <span>{{ $userChallenge->challenge->estimated_time ?? 'N/A' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium 
-                                {{ $userChallenge->status === 'en_cours' ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : 
-                                   ($userChallenge->status === 'termine' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 
-                                   'bg-red-500/20 text-red-400 border border-red-500/30') }}">
-                                {{ $userChallenge->status === 'en_cours' ? 'In Progress' : 
-                                   ($userChallenge->status === 'termine' ? 'Completed' : 'Abandoned') }}
-                            </span>
-                        </div>
-                        
-                        @if($userChallenge->status === 'en_cours')
-                            <div class="flex gap-3">
-                                <a href="{{ route('challenges.show', $userChallenge->challenge->id) }}" 
-                                   class="flex-1 bg-primary-container text-on-primary-container font-label py-3 rounded text-center hover:bg-opacity-90 transition-colors">
-                                    Continue
-                                </a>
-                                <a href="{{ route('challenges.submit', $userChallenge->challenge->id) }}" 
-                                   class="flex-1 border border-white/10 bg-surface-container text-on-surface font-label py-3 rounded text-center hover:bg-white/5 transition-colors">
-                                    Submit Solution
-                                </a>
-                            </div>
-                        @elseif($userChallenge->status === 'termine')
-                            <div class="flex gap-3">
-                                <a href="{{ route('challenges.show', $userChallenge->challenge->id) }}" 
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+                        <i class="ri-code-s-slash-line text-white text-lg"></i>
                                    class="flex-1 border border-white/10 bg-surface-container text-on-surface font-label py-3 rounded text-center hover:bg-white/5 transition-colors">
                                     View Solution
                                 </a>
