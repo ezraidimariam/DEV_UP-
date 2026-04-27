@@ -1,80 +1,64 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Challenges
-        </h2>
-    </x-slot>
+    <div class="container py-20">
+        <!-- Header -->
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">Challenges</h1>
+            <p class="text-lg text-gray-600">Test your skills and earn points by completing programming challenges.</p>
+        </div>
 
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Filter Tabs -->
-            <div class="mb-6 border-b border-gray-200">
-                <nav class="-mb-px flex space-x-8">
-                    <a href="{{ route('challenges.index') }}" 
-                       class="whitespace-nowrap py-2 px-1 border-b-2 border-blue-500 font-medium text-sm text-blue-600">
-                        Tous les Challenges
-                    </a>
-                    <a href="{{ route('challenges.my') }}" 
-                       class="whitespace-nowrap py-2 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300">
-                        Mes Challenges
-                    </a>
-                </nav>
-            </div>
-
-            <!-- Challenges Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($challenges as $challenge)
-                    <div class="bg-white overflow-hidden shadow rounded-lg hover:shadow-lg transition-shadow duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-lg font-medium text-gray-900">{{ $challenge->title }}</h3>
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
-                                    {{ $challenge->difficulty === 'facile' ? 'bg-green-100 text-green-800' : 
-                                       ($challenge->difficulty === 'moyen' ? 'bg-yellow-100 text-yellow-800' : 
-                                       'bg-red-100 text-red-800') }}">
-                                    {{ $challenge->difficulty }}
-                                </span>
-                            </div>
-                            
-                            <p class="text-gray-600 text-sm mb-4">
-                                {{ Str::limit($challenge->description, 100) }}
-                            </p>
-                            
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-sm text-gray-500">
-                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                    </svg>
-                                    {{ $challenge->points }} pts
-                                </div>
-                                
-                                @if(in_array($challenge->id, $userChallengeIds))
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                        En cours
-                                    </span>
-                                @else
-                                    <a href="{{ route('challenges.start', $challenge->id) }}" 
-                                       class="inline-flex items-center px-3 py-1 border border-transparent text-xs font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                        Commencer
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-50 px-6 py-3">
-                            <a href="{{ route('challenges.show', $challenge->id) }}" 
-                               class="text-sm font-medium text-blue-600 hover:text-blue-900">
-                                Voir les détails →
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-
-            <!-- Pagination -->
-            <div class="mt-8">
-                {{ $challenges->links() }}
+        <!-- Filter Tabs -->
+        <div class="mb-8 border-b border-gray-200">
+            <div class="flex gap-8">
+                <a href="{{ route('challenges.index') }}" 
+                   class="nav-link active">
+                    All Challenges
+                </a>
+                <a href="{{ route('challenges.my') }}" 
+                   class="nav-link">
+                    My Challenges
+                </a>
             </div>
         </div>
+
+        <!-- Challenges Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach($challenges as $challenge)
+                <div class="challenge-card card-interactive">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-0">{{ $challenge->title }}</h3>
+                        <span class="challenge-difficulty difficulty-{{ $challenge->difficulty }}">
+                            {{ $challenge->difficulty }}
+                        </span>
+                    </div>
+                    
+                    <p class="text-gray-600 mb-6">
+                        {{ Str::limit($challenge->description, 120) }}
+                    </p>
+                    
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex items-center gap-2">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-400">
+                                <path d="M8 1C4.13401 1 1 4.13401 1 8C1 11.866 4.13401 15 8 15C11.866 15 15 11.866 15 8C15 4.13401 11.866 1 8 1ZM8 3C10.2091 3 12 4.79086 12 7C12 9.20914 10.2091 11 8 11C5.79086 11 4 9.20914 4 7C4 4.79086 5.79086 3 8 3Z" fill="currentColor"/>
+                                <path d="M8 5V8L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            <span class="text-gray-600">{{ $challenge->points }} pts</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <a href="{{ route('challenges.show', $challenge->id) }}" class="btn btn-primary w-full">
+                            View Challenge
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        @if($challenges->count() === 0)
+            <div class="text-center py-20">
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">No challenges available</h3>
+                <p class="text-gray-600">Check back later for new programming challenges.</p>
+            </div>
+        @endif
     </div>
 </x-app-layout>
