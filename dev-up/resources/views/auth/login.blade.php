@@ -1,322 +1,314 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Login - DEV↑UP</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV↑UP - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    </style>
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "inverse-on-surface": "#303038",
-                        "on-secondary": "#313030",
-                        "inverse-surface": "#e4e1ed",
-                        "tertiary-fixed": "#ffdcc5",
-                        "on-secondary-fixed-variant": "#474646",
-                        "tertiary": "#ffb783",
-                        "on-background": "#e4e1ed",
-                        "on-surface": "#e4e1ed",
-                        "on-primary": "#1000a9",
-                        "primary": "#c0c1ff",
-                        "primary-fixed-dim": "#c0c1ff",
-                        "on-primary-fixed-variant": "#2f2ebe",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-container": "#0d0096",
-                        "error": "#ffb4ab",
-                        "surface-container-low": "#1b1b23",
-                        "surface": "#13131b",
-                        "outline-variant": "#464554",
-                        "on-primary-fixed": "#07006c",
-                        "on-tertiary-fixed": "#301400",
-                        "on-tertiary-container": "#452000",
-                        "outline": "#908fa0",
-                        "surface-tint": "#c0c1ff",
-                        "surface-bright": "#393841",
-                        "error-container": "#93000a",
-                        "surface-container-highest": "#34343d",
-                        "surface-dim": "#13131b",
-                        "inverse-primary": "#494bd6",
-                        "background": "#13131b",
-                        "on-surface-variant": "#c7c4d7",
-                        "surface-container": "#1f1f27",
-                        "secondary-fixed": "#e5e2e1",
-                        "tertiary-fixed-dim": "#ffb783",
-                        "secondary-container": "#4a4949",
-                        "primary-fixed": "#e1e0ff",
-                        "on-secondary-container": "#bab8b7",
-                        "on-tertiary": "#4f2500",
-                        "on-error": "#690005",
-                        "tertiary-container": "#d97721",
-                        "secondary-fixed-dim": "#c8c6c5",
-                        "secondary": "#c8c6c5",
-                        "surface-variant": "#34343d",
-                        "on-secondary-fixed": "#1c1b1b",
-                        "surface-container-high": "#292932",
-                        "primary-container": "#8083ff",
-                        "on-tertiary-fixed-variant": "#703700",
-                        "surface-container-lowest": "#0d0d15"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "stack-lg": "64px",
-                        "container-max": "640px",
-                        "stack-sm": "16px",
-                        "gutter": "24px",
-                        "unit": "4px",
-                        "stack-md": "32px"
-                    },
-                    "fontFamily": {
-                        "body-sm": ["Inter"],
-                        "label": ["Inter"],
-                        "h1": ["Inter"],
-                        "body-lg": ["Inter"],
-                        "h2": ["Inter"],
-                        "body-md": ["Inter"]
-                    },
-                    "fontSize": {
-                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
-                        "label": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500"}],
-                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "h2": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
-                    }
-                },
-            },
-        }
-    </script>
-    <style>
+        
         body {
-            min-height: max(884px, 100dvh);
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .mono-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        .glow-button {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .glow-button:hover::before {
+            left: 100%;
+        }
+        
+        .glow-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 40px rgba(102, 126, 234, 0.4),
+                0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .input-field {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -150px;
+            right: -150px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            top: 50%;
+            left: -75px;
+            animation: float 10s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .social-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .social-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+        
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: #4ade80;
         }
     </style>
 </head>
-<body class="bg-black text-on-surface font-body-md antialiased selection:bg-primary selection:text-on-primary">
-<!-- TopAppBar Fragment (Suppressing Nav for Login) -->
-<header class="fixed top-0 w-full z-50 border-b border-white/10 bg-black">
-    <div class="flex justify-between items-center h-16 px-6 max-w-[640px] mx-auto w-full">
-        <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-indigo-500" data-icon="terminal">terminal</span>
-            <span class="text-indigo-500 font-black tracking-tighter text-xl">DEV↑UP</span>
-        </div>
-        <div class="font-inter antialiased uppercase tracking-widest text-xs text-neutral-500">
-            System Access
-        </div>
+<body class="min-h-screen flex items-center justify-center relative">
+    <!-- Floating Background Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
     </div>
-</header>
 
-<!-- Main Content -->
-<main class="min-h-screen flex flex-col items-center justify-center px-gutter pt-16">
-    <div class="w-full max-w-[640px] flex flex-col">
-        <!-- Session Status -->
-        @if (session('status'))
-            <div class="w-full bg-green-500/20 border border-green-500/30 rounded-lg p-4 mb-6 text-green-400 text-sm">
-                {{ session('status') }}
+    <!-- Main Container -->
+    <div class="relative z-10 w-full max-w-md px-6">
+        <!-- Logo Section -->
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 mb-6">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+                    <i class="ri-login-box-line text-white text-xl"></i>
+                </div>
+                <h1 class="brand-font text-3xl font-black gradient-text">DEV↑UP</h1>
             </div>
-        @endif
-
-        <!-- Hero Branding Section -->
-        <div class="mb-stack-lg text-center">
-            <h1 class="font-h1 text-h1 text-on-surface mb-unit">Login to your account</h1>
-            <p class="font-body-md text-body-md text-on-surface-variant">Access your developer dashboard and projects.</p>
+            <p class="text-gray-400 text-sm">Welcome back! Sign in to continue.</p>
         </div>
 
-        <!-- Transactional Form -->
-        <form method="POST" action="{{ route('login') }}" class="space-y-stack-md">
-            @csrf
+        <!-- Login Form -->
+        <div class="glass-card rounded-2xl p-8 mb-6">
+            <!-- Session Status Messages -->
+            @if (session('status'))
+                <div class="success-message rounded-lg p-4 mb-6 text-sm">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-            <!-- Email Address -->
-            <div class="flex flex-col">
-                <label class="font-label text-label uppercase text-on-surface-variant mb-2" for="email">Email Address</label>
-                <input 
-                    class="w-full bg-[#121212] border border-white/10 rounded px-4 py-3 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all placeholder:text-neutral-700" 
-                    id="email" 
-                    name="email" 
-                    type="email" 
-                    value="{{ old('email') }}"
-                    placeholder="name@company.com"
-                    required
-                    autocomplete="email"
-                    autofocus>
-                
-                @if ($errors->has('email'))
-                    <div class="mt-2 text-error text-sm">
-                        {{ $errors->first('email') }}
+            <form method="POST" action="{{ route('login') }}" class="space-y-5">
+                @csrf
+
+                <!-- Email Field -->
+                <div class="space-y-2">
+                    <label for="email" class="text-sm font-medium text-gray-300">Email Address</label>
+                    <div class="relative">
+                        <i class="ri-mail-line absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                        <input 
+                            id="email" 
+                            name="email" 
+                            type="email" 
+                            value="{{ old('email') }}"
+                            placeholder="you@example.com"
+                            required
+                            autocomplete="email"
+                            autofocus
+                            class="input-field w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-500 outline-none">
                     </div>
-                @endif
-            </div>
+                    @if ($errors->has('email'))
+                        <div class="error-message rounded-lg p-3 mt-2 text-sm">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
+                </div>
 
-            <!-- Password -->
-            <div class="flex flex-col">
-                <div class="flex justify-between items-end mb-2">
-                    <label class="font-label text-label uppercase text-on-surface-variant" for="password">Password</label>
+                <!-- Password Field -->
+                <div class="space-y-2">
+                    <label for="password" class="text-sm font-medium text-gray-300">Password</label>
+                    <div class="relative">
+                        <i class="ri-lock-line absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                        <input 
+                            id="password" 
+                            name="password" 
+                            type="password" 
+                            placeholder="•••••••"
+                            required
+                            autocomplete="current-password"
+                            class="input-field w-full pl-12 pr-4 py-4 rounded-xl text-white placeholder-gray-500 outline-none">
+                    </div>
+                    @if ($errors->has('password'))
+                        <div class="error-message rounded-lg p-3 mt-2 text-sm">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input 
+                            id="remember_me" 
+                            name="remember" 
+                            type="checkbox" 
+                            class="w-4 h-4 rounded bg-gray-800 border-gray-600 text-purple-600 focus:ring-purple-500 focus:ring-2">
+                        <label for="remember_me" class="ml-2 text-sm text-gray-400">
+                            Remember me
+                        </label>
+                    </div>
                     @if (Route::has('password.request'))
-                        <a class="font-label text-label uppercase text-primary hover:text-primary-container transition-colors" href="{{ route('password.request') }}">
-                            Forgot?
+                        <a href="{{ route('password.request') }}" class="text-sm text-purple-400 hover:text-purple-300 transition-colors">
+                            Forgot password?
                         </a>
                     @endif
                 </div>
-                <input 
-                    class="w-full bg-[#121212] border border-white/10 rounded px-4 py-3 text-on-surface focus:outline-none focus:ring-1 focus:ring-primary-container focus:border-primary-container transition-all placeholder:text-neutral-700" 
-                    id="password" 
-                    name="password" 
-                    type="password" 
-                    placeholder="•••••••"
-                    required
-                    autocomplete="current-password">
-                
-                @if ($errors->has('password'))
-                    <div class="mt-2 text-error text-sm">
-                        {{ $errors->first('password') }}
-                    </div>
-                @endif
-            </div>
 
-            <!-- Remember Me -->
-            <div class="flex items-center">
-                <input 
-                    class="bg-[#121212] border border-white/10 rounded text-primary focus:ring-1 focus:ring-primary-container" 
-                    id="remember_me" 
-                    name="remember" 
-                    type="checkbox">
-                <label class="ml-2 text-sm text-on-surface-variant" for="remember_me">Remember me</label>
-            </div>
-
-            <div class="pt-unit">
-                <button class="w-full bg-primary-container text-on-primary-container font-label py-4 rounded hover:bg-opacity-90 active:scale-[0.98] transition-all flex justify-center items-center gap-2" type="submit">
-                    <span>Login</span>
-                    <span class="material-symbols-outlined text-sm" data-icon="login">login</span>
+                <!-- Submit Button -->
+                <button type="submit" class="glow-button w-full py-4 rounded-xl text-white font-semibold text-lg">
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        <i class="ri-login-line text-xl"></i>
+                        Sign In
+                    </span>
                 </button>
-            </div>
-        </form>
-
-        <!-- Social/Secondary Actions -->
-        <div class="mt-stack-md flex flex-col items-center gap-stack-sm">
-            <div class="w-full flex items-center gap-4">
-                <div class="h-[1px] flex-1 bg-white/5"></div>
-                <span class="font-label text-[10px] text-neutral-600 uppercase">Or continue with</span>
-                <div class="h-[1px] flex-1 bg-white/5"></div>
-            </div>
-            <div class="w-full grid grid-cols-2 gap-4">
-                <button class="flex items-center justify-center gap-2 border border-white/5 bg-[#121212] py-3 rounded font-label text-on-surface hover:bg-white/5 transition-colors">
-                    <span class="material-symbols-outlined text-[18px]" data-icon="terminal">terminal</span>
-                    <span>Github</span>
-                </button>
-                <button class="flex items-center justify-center gap-2 border border-white/5 bg-[#121212] py-3 rounded font-label text-on-surface hover:bg-white/5 transition-colors">
-                    <span class="material-symbols-outlined text-[18px]" data-icon="cloud">cloud</span>
-                    <span>Google</span>
-                </button>
-            </div>
-            @if (Route::has('register'))
-                <p class="mt-stack-sm font-body-sm text-body-sm text-neutral-500">
-                    Don't have an account? 
-                    <a class="text-primary hover:underline underline-offset-4" href="{{ route('register') }}">Sign up for free</a>
-                </p>
-            @endif
+            </form>
         </div>
 
-        <!-- Aesthetic Footer Detail -->
-        <div class="mt-stack-lg flex justify-center opacity-30">
-            <div class="w-24 h-24 overflow-hidden rounded-full border border-white/10 flex items-center justify-center relative">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
-                <span class="material-symbols-outlined text-4xl text-on-surface" data-icon="security">security</span>
+        <!-- Social Sign In -->
+        <div class="space-y-4">
+            <div class="flex items-center gap-4">
+                <div class="flex-1 h-px bg-gray-800"></div>
+                <span class="text-xs text-gray-500 uppercase tracking-wider">Or sign in with</span>
+                <div class="flex-1 h-px bg-gray-800"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <button class="social-button rounded-xl py-3 flex items-center justify-center gap-2 text-gray-300 hover:text-white transition-all">
+                    <i class="ri-github-fill text-xl"></i>
+                    <span class="text-sm font-medium">GitHub</span>
+                </button>
+                <button class="social-button rounded-xl py-3 flex items-center justify-center gap-2 text-gray-300 hover:text-white transition-all">
+                    <i class="ri-google-fill text-xl"></i>
+                    <span class="text-sm font-medium">Google</span>
+                </button>
             </div>
         </div>
-    </div>
-</main>
-
-<!-- Visual Layering Element (Subtle Background Detail) -->
-<div class="fixed top-0 left-1/2 -translate-x-1/2 w-[640px] h-screen -z-10 pointer-events-none opacity-20">
-    <div class="absolute top-0 w-full h-1/2 bg-gradient-to-b from-indigo-500/10 to-transparent"></div>
-</div>
-</body>
-</html>
-                <input id="email" 
-                       class="input" 
-                       type="email" 
-                       name="email" 
-                       value="{{ old('email') }}" 
-                       required 
-                       autofocus 
-                       autocomplete="username"
-                       placeholder="Enter your email">
-                
-                @if ($errors->has('email'))
-                    <div class="form-error">
-                        {{ $errors->first('email') }}
-                    </div>
-                @endif
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input id="password" 
-                       class="input" 
-                       type="password" 
-                       name="password" 
-                       required 
-                       autocomplete="current-password"
-                       placeholder="Enter your password">
-                
-                @if ($errors->has('password'))
-                    <div class="form-error">
-                        {{ $errors->first('password') }}
-                    </div>
-                @endif
-            </div>
-
-            <!-- Remember Me -->
-            <div class="mb-6">
-                <label for="remember_me" class="flex items-center gap-3 cursor-pointer">
-                    <input id="remember_me" 
-                           type="checkbox" 
-                           name="remember"
-                           class="w-4 h-4 text-primary rounded focus:ring-primary">
-                    <span class="text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-primary w-full mb-4">
-                Log in
-            </button>
-
-            <!-- Forgot Password Link -->
-            @if (Route::has('password.request'))
-                <div class="text-center">
-                    <a href="{{ route('password.request') }}" 
-                       class="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                        Forgot your password?
-                    </a>
-                </div>
-            @endif
-        </form>
 
         <!-- Register Link -->
-        <div class="text-center mt-8 pt-6 border-t border-gray-200">
-            <p class="text-sm text-gray-600">
+        <div class="text-center mt-8">
+            <p class="text-gray-400 text-sm">
                 Don't have an account? 
-                <a href="{{ route('register') }}" class="text-primary hover:text-primary-dark font-medium transition-colors">
-                    Sign up
-                </a>
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="text-purple-400 hover:text-purple-300 font-medium transition-colors">
+                        Sign up
+                    </a>
+                @endif
             </p>
         </div>
+
+        <!-- Footer Branding -->
+        <div class="text-center mt-12">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900/50 border border-gray-800">
+                <i class="ri-shield-check-line text-green-400"></i>
+                <span class="text-xs text-gray-500 mono-font">SECURE LOGIN</span>
+            </div>
+        </div>
     </div>
-</div>
+</body>
+</html>
