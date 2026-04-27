@@ -548,4 +548,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</body>
+</html>

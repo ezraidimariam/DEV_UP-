@@ -306,4 +306,3 @@
     </main>
 </body>
 </html>
-</x-app-layout>
