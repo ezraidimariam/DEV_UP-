@@ -1,98 +1,98 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Sessions de Focus
-        </h2>
-    </x-slot>
-
-    <div class="py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="mb-6">
-                <a href="{{ route('focus-sessions.create') }}" 
-                   class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Nouvelle Session
-                </a>
+    <div class="container py-20">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Focus Sessions</h1>
+                <p class="text-lg text-gray-600">Track your focus sessions and improve your productivity.</p>
             </div>
+            <a href="{{ route('focus-sessions.create') }}" class="btn btn-primary btn-lg">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                New Session
+            </a>
+        </div>
 
-            <div class="bg-white overflow-hidden shadow rounded-lg">
-                <div class="px-4 py-5 sm:p-6">
-                    @if($sessions->count() > 0)
-                        <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durée Focus</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durée Pause</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
-                                    @foreach($sessions as $session)
-                                        <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $session->date_session->format('d/m/Y H:i') }}
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $session->focus_duration }} min
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                {{ $session->break_duration }} min
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
-                                                    {{ $session->is_completed ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                                    {{ $session->is_completed ? 'Terminée' : 'En cours' }}
-                                                </span>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                @if(!$session->is_completed)
-                                                    <a href="{{ route('focus-sessions.timer', $session->id) }}" 
-                                                       class="text-blue-600 hover:text-blue-900 mr-3">
-                                                        Reprendre
-                                                    </a>
-                                                @endif
-                                                <form action="{{ route('focus-sessions.complete', $session->id) }}" method="POST" class="inline">
-                                                    @csrf
-                                                    @if(!$session->is_completed)
-                                                        <button type="submit" 
-                                                                class="text-green-600 hover:text-green-900"
-                                                                onclick="return confirm('Êtes-vous sûr de vouloir marquer cette session comme terminée?')">
-                                                            Terminer
-                                                        </button>
-                                                    @endif
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+        <!-- Sessions Grid -->
+        @if($sessions->count() > 0)
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach($sessions as $session)
+                    <div class="card card-interactive p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                                    {{ $session->focus_duration }} min Focus
+                                </h3>
+                                <p class="text-sm text-gray-600">
+                                    {{ $session->date_session->format('M j, Y • g:i A') }}
+                                </p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-gray-900">{{ $session->focus_duration }}</div>
+                                <div class="text-xs text-gray-500">minutes</div>
+                            </div>
                         </div>
                         
-                        <div class="mt-4">
-                            {{ $sessions->links() }}
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-4 text-sm text-gray-600">
+                                <div class="flex items-center gap-1">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-400">
+                                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                        <path d="M8 5v3l2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>{{ $session->focus_duration }} min</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="text-gray-400">
+                                        <rect x="3" y="6" width="10" height="4" rx="1" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                    <span>{{ $session->break_duration }} min</span>
+                                </div>
+                            </div>
                         </div>
-                    @else
-                        <div class="text-center py-12">
-                            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <h3 class="mt-2 text-sm font-medium text-gray-900">Aucune session</h3>
-                            <p class="mt-1 text-sm text-gray-500">Commencez par créer votre première session de focus.</p>
-                            <div class="mt-6">
-                                <a href="{{ route('focus-sessions.create') }}" 
-                                   class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                    Créer une session
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
+                                {{ $session->is_completed 
+                                    ? 'bg-green-100 text-green-800' 
+                                    : 'bg-yellow-100 text-yellow-800' }}">
+                                {{ $session->is_completed ? 'Completed' : 'In Progress' }}
+                            </span>
+                            
+                            <div class="flex gap-2">
+                                @if(!$session->is_completed)
+                                    <a href="{{ route('focus-sessions.timer', $session->id) }}" 
+                                       class="btn btn-primary btn-sm">
+                                        Resume
+                                    </a>
+                                @endif
+                                <a href="{{ route('focus-sessions.timer', $session->id) }}" 
+                                   class="btn btn-ghost btn-sm">
+                                    View
                                 </a>
                             </div>
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endforeach
             </div>
-        </div>
+        @else
+            <div class="text-center py-20">
+                <div class="mb-8">
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" class="mx-auto text-gray-300">
+                        <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M32 20v12l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-900 mb-4">No focus sessions yet</h3>
+                <p class="text-gray-600 mb-8">Start your first focus session to build better concentration habits.</p>
+                <a href="{{ route('focus-sessions.create') }}" class="btn btn-primary btn-lg">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    Start First Session
+                </a>
+            </div>
+        @endif
     </div>
 </x-app-layout>
