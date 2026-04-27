@@ -1,86 +1,122 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Nouvelle Session de Focus
-        </h2>
-    </x-slot>
+    <div class="container py-20">
+        <div class="max-w-2xl mx-auto">
+            <!-- Header -->
+            <div class="mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">Create Focus Session</h1>
+                <p class="text-lg text-gray-600">Set up your focus session to maximize productivity and maintain concentration.</p>
+            </div>
 
-    <div class="py-6">
-        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow rounded-lg">
-                <form action="{{ route('focus-sessions.store') }}" method="POST" class="p-6">
+            <!-- Form Card -->
+            <div class="card p-8">
+                <form action="{{ route('focus-sessions.store') }}" method="POST">
                     @csrf
                     
-                    <div class="space-y-6">
-                        <div>
-                            <label for="focus_duration" class="block text-sm font-medium text-gray-700">
-                                Durée de Focus (minutes)
-                            </label>
-                            <div class="mt-1">
-                                <input type="number" 
-                                       name="focus_duration" 
-                                       id="focus_duration" 
-                                       value="25"
-                                       min="1" 
-                                       max="120"
-                                       required
-                                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                <p class="mt-2 text-sm text-gray-500">
-                                    Temps de concentration (1-120 minutes). Recommandé: 25 minutes.
-                                </p>
-                            </div>
-                        </div>
+                    <!-- Focus Duration -->
+                    <div class="form-group">
+                        <label for="focus_duration" class="form-label">Focus Duration (minutes)</label>
+                        <input type="number" 
+                               name="focus_duration" 
+                               id="focus_duration" 
+                               value="25"
+                               min="1" 
+                               max="120"
+                               required
+                               class="input"
+                               placeholder="Enter focus duration">
+                        <p class="text-sm text-gray-500 mt-2">
+                            Concentration time (1-120 minutes). Recommended: 25 minutes.
+                        </p>
+                    </div>
 
-                        <div>
-                            <label for="break_duration" class="block text-sm font-medium text-gray-700">
-                                Durée de Pause (minutes)
-                            </label>
-                            <div class="mt-1">
-                                <input type="number" 
-                                       name="break_duration" 
-                                       id="break_duration" 
-                                       value="5"
-                                       min="1" 
-                                       max="30"
-                                       required
-                                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                                <p class="mt-2 text-sm text-gray-500">
-                                    Temps de pause entre les sessions (1-30 minutes). Recommandé: 5 minutes.
-                                </p>
-                            </div>
-                        </div>
+                    <!-- Break Duration -->
+                    <div class="form-group">
+                        <label for="break_duration" class="form-label">Break Duration (minutes)</label>
+                        <input type="number" 
+                               name="break_duration" 
+                               id="break_duration" 
+                               value="5"
+                               min="1" 
+                               max="30"
+                               required
+                               class="input"
+                               placeholder="Enter break duration">
+                        <p class="text-sm text-gray-500 mt-2">
+                            Break time between sessions (1-30 minutes). Recommended: 5 minutes.
+                        </p>
+                    </div>
 
-                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4">
-                            <div class="flex">
-                                <div class="flex-shrink-0">
-                                    <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <h3 class="text-sm font-medium text-blue-800">
-                                        Technique Pomodoro
-                                    </h3>
-                                    <div class="mt-2 text-sm text-blue-700">
-                                        <p>La technique Pomodoro utilise des sessions de 25 minutes de focus suivies de 5 minutes de pause. Après 4 sessions, prenez une pause plus longue (15-30 minutes).</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex justify-end space-x-3">
-                            <a href="{{ route('focus-sessions.index') }}" 
-                               class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                Annuler
-                            </a>
-                            <button type="submit" 
-                                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                Commencer la Session
+                    <!-- Quick Presets -->
+                    <div class="form-group">
+                        <label class="form-label">Quick Presets</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button type="button" 
+                                    onclick="setPreset(25, 5)"
+                                    class="btn btn-secondary text-sm">
+                                <div class="font-medium">Pomodoro</div>
+                                <div class="text-xs text-gray-500">25/5 min</div>
+                            </button>
+                            <button type="button" 
+                                    onclick="setPreset(50, 10)"
+                                    class="btn btn-secondary text-sm">
+                                <div class="font-medium">Extended</div>
+                                <div class="text-xs text-gray-500">50/10 min</div>
+                            </button>
+                            <button type="button" 
+                                    onclick="setPreset(90, 15)"
+                                    class="btn btn-secondary text-sm">
+                                <div class="font-medium">Deep Work</div>
+                                <div class="text-xs text-gray-500">90/15 min</div>
                             </button>
                         </div>
                     </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex gap-4">
+                        <button type="submit" class="btn btn-primary flex-1">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 3v14M3 10h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            Start Session
+                        </button>
+                        <a href="{{ route('focus-sessions.index') }}" class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </div>
                 </form>
+            </div>
+
+            <!-- Tips -->
+            <div class="card mt-8 p-6 bg-gray-50">
+                <h3 class="text-lg font-semibold text-gray-900 mb-4">Focus Tips</h3>
+                <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start gap-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-green-500 mt-0.5">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill="currentColor"/>
+                        </svg>
+                        <span>Eliminate distractions before starting your session</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-green-500 mt-0.5">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill="currentColor"/>
+                        </svg>
+                        <span>Take short breaks to maintain productivity</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="text-green-500 mt-0.5">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill="currentColor"/>
+                        </svg>
+                        <span>Stay hydrated and comfortable during focus time</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+
+    <script>
+        function setPreset(focus, breakTime) {
+            document.getElementById('focus_duration').value = focus;
+            document.getElementById('break_duration').value = breakTime;
+        }
+    </script>
 </x-app-layout>
