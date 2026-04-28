@@ -15,7 +15,12 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         
-        // Get user stats
+        // Redirect based on user role
+        if ($user->isFormateur()) {
+            return redirect()->route('formateur.dashboard');
+        }
+        
+        // Get user stats for apprenant
         $totalPoints = $user->points;
         $currentLevel = $user->level;
         $completedChallenges = UserChallenge::where('user_id', $user->id)
