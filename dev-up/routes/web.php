@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormateurDashboardController;
 use App\Http\Controllers\FocusSessionController;
 use App\Http\Controllers\ChallengeController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
     Route::post('/challenges/{challenge}/start', [ChallengeController::class, 'start'])->name('challenges.start');
     Route::post('/challenges/{challenge}/submit', [ChallengeController::class, 'submit'])->name('challenges.submit');
+    
+    // Formateur (Trainer) Routes
+    Route::middleware(['auth', 'role:formateur'])->prefix('formateur')->name('formateur.')->group(function () {
+        Route::get('/dashboard', [FormateurDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/submissions', [FormateurDashboardController::class, 'submissions'])->name('submissions');
+        Route::get('/submissions/{submission}/review', [FormateurDashboardController::class, 'reviewSubmission'])->name('review');
+        Route::post('/submissions/{submission}/feedback', [FormateurDashboardController::class, 'submitFeedback'])->name('feedback.submit');
+        Route::get('/students', [FormateurDashboardController::class, 'students'])->name('students');
+        Route::get('/students/{student}/progress', [FormateurDashboardController::class, 'studentProgress'])->name('student.progress');
+        Route::get('/feedback', [FormateurDashboardController::class, 'feedback'])->name('feedback');
+        Route::get('/analytics', [FormateurDashboardController::class, 'analytics'])->name('analytics');
+    });
 });
 
 require __DIR__.'/auth.php';
