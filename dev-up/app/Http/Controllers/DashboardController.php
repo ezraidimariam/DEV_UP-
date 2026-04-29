@@ -16,6 +16,11 @@ class DashboardController extends Controller
         $user = Auth::user();
         
         // Redirect based on user role
+        if ($user->isAdmin()) {
+            // For admin, show admin-specific dashboard or redirect to admin panel
+            return view('admin.dashboard', compact('user'));
+        }
+        
         if ($user->isFormateur()) {
             return redirect()->route('formateur.dashboard');
         }
