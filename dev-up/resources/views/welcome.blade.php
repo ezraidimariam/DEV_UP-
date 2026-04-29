@@ -94,49 +94,31 @@
         .shape {
             position: absolute;
             border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.3;
+            filter: blur(25px);
+            opacity: 0.2;
         }
         
         .shape-1 {
-            width: 400px;
-            height: 400px;
+            width: 300px;
+            height: 300px;
             background: linear-gradient(135deg, #667eea, #764ba2);
-            top: -200px;
-            right: -200px;
-            animation: float 8s ease-in-out infinite;
+            top: -150px;
+            right: -150px;
+            animation: float 10s ease-in-out infinite;
         }
         
         .shape-2 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            bottom: -150px;
-            left: -150px;
-            animation: float 10s ease-in-out infinite reverse;
-        }
-        
-        .shape-3 {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
-            top: 30%;
-            left: -125px;
-            animation: float 12s ease-in-out infinite;
-        }
-        
-        .shape-4 {
             width: 200px;
             height: 200px;
-            background: linear-gradient(135deg, #fa709a, #fee140);
-            top: 60%;
-            right: -100px;
-            animation: float 14s ease-in-out infinite reverse;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -100px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite reverse;
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
+            50% { transform: translateY(-15px) rotate(90deg); }
         }
         
         .nav-item {
@@ -233,8 +215,6 @@
 <div class="floating-shapes">
     <div class="shape shape-1"></div>
     <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-    <div class="shape shape-4"></div>
 </div>
 
 <!-- Hero Section -->
