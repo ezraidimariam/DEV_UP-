@@ -16,7 +16,6 @@ class FormateurDashboardController extends Controller
     {
         $user = Auth::user();
         
-        // Get statistics
         $stats = [
             'total_students' => User::where('role', 'apprenant')->count(),
             'pending_submissions' => Submission::where('status', 'en_attente')->count(),
@@ -24,21 +23,18 @@ class FormateurDashboardController extends Controller
             'total_feedback_given' => Feedback::where('formateur_id', $user->id)->count(),
         ];
 
-        // Get recent submissions awaiting review
         $pendingSubmissions = Submission::with(['user', 'challenge'])
             ->where('status', 'en_attente')
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
 
-        // Get recent feedback given by this trainer
         $recentFeedback = Feedback::with(['submission.user', 'submission.challenge'])
             ->where('formateur_id', $user->id)
             ->orderBy('created_at', 'desc')
             ->take(5)
             ->get();
 
-        // Get student progress overview
         $studentProgress = User::where('role', 'apprenant')
             ->withCount(['userChallenges' => function($query) {
                 $query->where('status', 'termine');
@@ -84,7 +80,6 @@ class FormateurDashboardController extends Controller
 
         $user = Auth::user();
         
-        // Use the existing method from User model
         $feedback = $user->ajouterFeedback($submission->id, $request->commentaire, $request->note);
 
         if ($feedback) {
@@ -137,13 +132,11 @@ class FormateurDashboardController extends Controller
 
     public function analytics()
     {
-        // Get comprehensive analytics data
         $totalStudents = User::where('role', 'apprenant')->count();
         $totalSubmissions = Submission::count();
         $pendingSubmissions = Submission::where('status', 'en_attente')->count();
         $completedChallenges = UserChallenge::where('status', 'termine')->count();
 
-        // Challenge completion rates
         $challengeStats = Challenge::withCount(['userChallenges' => function($query) {
                 $query->where('status', 'termine');
             }])
@@ -161,7 +154,6 @@ class FormateurDashboardController extends Controller
                 ];
             });
 
-        // Student level distribution
         $levelDistribution = User::where('role', 'apprenant')
             ->selectRaw('level, COUNT(*) as count')
             ->groupBy('level')

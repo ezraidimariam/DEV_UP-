@@ -6,13 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('challenges', function (Blueprint $table) {
-            // Add missing fields from UML diagram
             $table->foreignId('categorie_id')->nullable()->constrained()->onDelete('set null');
             $table->renameColumn('title', 'titre');
             $table->renameColumn('difficulty', 'difficulte');
@@ -21,9 +17,6 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('challenges', function (Blueprint $table) {

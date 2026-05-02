@@ -15,9 +15,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         
-        // Redirect based on user role
         if ($user->isAdmin()) {
-            // For admin, show admin-specific dashboard or redirect to admin panel
             return view('admin.dashboard', compact('user'));
         }
         
@@ -25,7 +23,6 @@ class DashboardController extends Controller
             return redirect()->route('formateur.dashboard');
         }
         
-        // Get user stats for apprenant
         $totalPoints = $user->points;
         $currentLevel = $user->level;
         $completedChallenges = UserChallenge::where('user_id', $user->id)
@@ -35,16 +32,13 @@ class DashboardController extends Controller
             ->where('is_completed', true)
             ->count();
 
-        // Get recent challenges
         $recentChallenges = Challenge::latest()->take(3)->get();
         
-        // Get user's active challenges
         $activeChallenges = UserChallenge::where('user_id', $user->id)
             ->where('status', 'en_cours')
             ->with('challenge')
             ->get();
 
-        // Get recent sessions
         $recentSessions = FocusSession::where('user_id', $user->id)
             ->latest('date_session')
             ->take(5)
