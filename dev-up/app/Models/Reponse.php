@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Reponse extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'question_id',
         'apprenant_id',
@@ -33,17 +30,5 @@ class Reponse extends Model
     public function apprenant()
     {
         return $this->belongsTo(User::class, 'apprenant_id');
-    }
-
-    public function soumettre(): bool
-    {
-        $this->date_soumission = now();
-        $this->save();
-        return true;
-    }
-
-    public function getScore(): int
-    {
-        return $this->est_correcte ? $this->question->points : 0;
     }
 }
