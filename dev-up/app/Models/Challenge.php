@@ -10,11 +10,28 @@ class Challenge extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
+        'categorie_id',
+        'titre',
         'description',
-        'difficulty',
-        'points',
+        'difficulte',
+        'valeur_points',
+        'date_limite',
     ];
+
+    protected $casts = [
+        'date_limite' => 'datetime',
+        'valeur_points' => 'integer',
+    ];
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
 
     public function userChallenges()
     {
@@ -29,5 +46,20 @@ class Challenge extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_challenges');
+    }
+
+    public function progressions()
+    {
+        return $this->hasMany(Progression::class);
+    }
+
+    public function getQuestions(): array
+    {
+        return $this->questions()->get()->toArray();
+    }
+
+    public function estActif(): bool
+    {
+        return $this->date_limite && $this->date_limite > now();
     }
 }
