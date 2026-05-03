@@ -18,9 +18,10 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
             color: #ffffff;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
         .brand-font {
