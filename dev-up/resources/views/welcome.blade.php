@@ -123,10 +123,15 @@
 
             <!-- Navigation Links -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a>
-                <a href="#challenges" class="text-gray-300 hover:text-white transition-colors">Challenges</a>
-                <a href="#focus" class="text-gray-300 hover:text-white transition-colors">Focus Sessions</a>
-                <a href="#about" class="text-gray-300 hover:text-white transition-colors">About</a>
+                @guest
+                    <a href="{{ route('login') }}" class="text-gray-300 hover:text-white transition-colors">Login</a>
+                    <a href="{{ route('register') }}" class="text-gray-300 hover:text-white transition-colors">Register</a>
+                @else
+                    <a href="{{ route('dashboard') }}" class="text-gray-300 hover:text-white transition-colors">Dashboard</a>
+                    <a href="{{ route('challenges.index') }}" class="text-gray-300 hover:text-white transition-colors">Challenges</a>
+                    <a href="{{ route('focus-sessions.index') }}" class="text-gray-300 hover:text-white transition-colors">Focus Sessions</a>
+                    <a href="{{ route('profile.edit') }}" class="text-gray-300 hover:text-white transition-colors">Profile</a>
+                @endguest
             </div>
 
             <!-- Auth Buttons -->
