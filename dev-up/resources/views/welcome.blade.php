@@ -22,9 +22,10 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: #0a0a0a;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
             color: #ffffff;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
         .brand-font {
@@ -43,106 +44,51 @@
         }
         
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.3),
-                0 4px 16px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            background: rgba(15, 15, 30, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
         }
         
         .glow-button {
-            position: relative;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border: none;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        
-        .glow-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .glow-button:hover::before {
-            left: 100%;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
         
         .glow-button:hover {
             transform: translateY(-2px);
-            box-shadow: 
-                0 10px 40px rgba(102, 126, 234, 0.4),
-                0 6px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(25px);
-            opacity: 0.2;
-        }
-        
-        .shape-1 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            top: -150px;
-            right: -150px;
-            animation: float 10s ease-in-out infinite;
-        }
-        
-        .shape-2 {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            bottom: -100px;
-            left: -100px;
-            animation: float 15s ease-in-out infinite reverse;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(90deg); }
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
         
         .nav-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            transition: background-color 0.2s ease;
         }
         
         .nav-item:hover {
             background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
         
         .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 24px;
             transition: all 0.3s ease;
         }
         
         .feature-card:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
         
         .hero-text {
@@ -164,7 +110,7 @@
 </head>
 <body>
         <!-- Navigation -->
-<nav class="fixed top-0 w-full z-50 glass-card border-b border-gray-800">
+<nav class="fixed top-0 w-full z-50 glass-card border-b border-gray-800 backdrop-blur-md">
     <div class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
             <!-- Logo -->
@@ -211,11 +157,6 @@
     </div>
 </nav>
 
-<!-- Floating Background Shapes -->
-<div class="floating-shapes">
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-</div>
 
 <!-- Hero Section -->
 <section class="min-h-screen flex items-center justify-center relative pt-20">
