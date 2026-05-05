@@ -61,10 +61,7 @@
             text-decoration: none;
         }
         
-        .glow-button:hover {
-            opacity: 0.9;
-        }
-        
+                
         .nav-link {
             position: relative;
             cursor: pointer;
