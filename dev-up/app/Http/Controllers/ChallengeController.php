@@ -12,6 +12,11 @@ class ChallengeController extends Controller
 {
     public function index()
     {
+        // Double-check authentication
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $challenges = Challenge::latest()->paginate(12);
         $userChallengeIds = UserChallenge::where('user_id', Auth::id())
             ->pluck('challenge_id')
@@ -22,6 +27,11 @@ class ChallengeController extends Controller
 
     public function show(Challenge $challenge)
     {
+        // Double-check authentication
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $userChallenge = UserChallenge::where('user_id', Auth::id())
             ->where('challenge_id', $challenge->id)
             ->first();
