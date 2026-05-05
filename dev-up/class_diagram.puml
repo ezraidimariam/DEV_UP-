@@ -1,137 +1,156 @@
-@startuml DEV_UP_Simplified_Class_Diagram
+@startuml DEV_UP_Class_Diagram
 
 !theme plain
 skinparam classAttributeIconSize 0
 
+' Enums
+enum UserRole {
+    ADMIN
+    FORMATEUR  
+    APPRENANT
+}
+
+enum Difficulty {
+    DEBUTANT
+    INTERMEDIAIRE
+    AVANCE
+    EXPERT
+}
+
+enum QuestionType {
+    QCM
+    CODE
+    TEXTE
+}
+
+' Core Classes
 class User {
-    +id: bigint
-    +name: string
-    +email: string
-    +password: string
-    +level: integer
-    +points: integer
-    +role: string
-    +serie_actuelle: string
-    +created_at: datetime
-    +updated_at: datetime
+    -id: Long
+    -name: String
+    -email: String
+    -password: String
+    -role: UserRole
+    -level: Integer
+    -points: Integer
     --
-    +challenges(): hasMany
-    +focusSessions(): hasMany
-    +progressions(): hasMany
-    +submissions(): hasMany
-    +isFormateur(): boolean
-    +isApprenant(): boolean
-    +isAdmin(): boolean
+    +login(email, password): Boolean
+    +logout(): void
+    +updateProfile(data): Boolean
+    +getProgress(): List<Progression>
+    +canCreateChallenge(): Boolean
 }
 
 class Challenge {
-    +id: bigint
-    +categorie_id: bigint
-    +titre: string
-    +description: text
-    +difficulte: string
-    +valeur_points: integer
-    +date_limite: datetime
-    +created_at: datetime
-    +updated_at: datetime
+    -id: Long
+    -title: String
+    -description: String
+    -difficulty: Difficulty
+    -points: Integer
+    -deadline: Date
     --
-    +categorie(): belongsTo
-    +questions(): hasMany
-    +submissions(): hasMany
-    +userChallenges(): hasMany
+    +start(user): Progression
+    +submit(user, content): Submission
+    +getQuestions(): List<Question>
+    +isExpired(): Boolean
 }
 
 class FocusSession {
-    +id: bigint
-    +user_id: bigint
-    +focus_duration: integer
-    +break_duration: integer
-    +date_session: datetime
-    +is_completed: boolean
-    +created_at: datetime
-    +updated_at: datetime
+    -id: Long
+    -duration: Integer
+    -breakTime: Integer
+    -startTime: Date
+    -endTime: Date
+    -completed: Boolean
     --
-    +user(): belongsTo
+    +start(): void
+    +pause(): void
+    +resume(): void
+    +complete(): void
+    +getTotalTime(): Integer
 }
 
-class Categorie {
-    +id: bigint
-    +nom: string
-    +description: text
-    +created_at: datetime
-    +updated_at: datetime
+class Category {
+    -id: Long
+    -name: String
+    -description: String
+    -icon: String
     --
-    +challenges(): hasMany
+    +getChallenges(): List<Challenge>
+    +addChallenge(challenge): void
+    +getChallengeCount(): Integer
 }
 
 class Question {
-    +id: bigint
-    +challenge_id: bigint
-    +enonce: text
-    +type: string
-    +points: integer
-    +created_at: datetime
-    +updated_at: datetime
+    -id: Long
+    -text: String
+    -type: QuestionType
+    -points: Integer
+    -order: Integer
     --
-    +challenge(): belongsTo
-    +reponses(): hasMany
+    +validateAnswer(answer): Boolean
+    +getCorrectAnswer(): String
+    +addResponse(response): void
 }
 
-class Reponse {
-    +id: bigint
-    +question_id: bigint
-    +user_id: bigint
-    +contenu: text
-    +est_correcte: boolean
-    +created_at: datetime
-    +updated_at: datetime
+class Response {
+    -id: Long
+    -content: String
+    -correct: Boolean
+    -score: Integer
+    -timeSpent: Integer
     --
-    +question(): belongsTo
-    +user(): belongsTo
+    +calculateScore(): Integer
+    -isCorrect(): Boolean
 }
 
 class Progression {
-    +id: bigint
-    +user_id: bigint
-    +challenge_id: bigint
-    +niveau_actuel: integer
-    +points_obtenus: integer
-    +date_debut: datetime
-    +date_fin: datetime
-    +created_at: datetime
-    +updated_at: datetime
+    -id: Long
+    -currentLevel: Integer
+    -score: Integer
+    -completion: Float
+    -startDate: Date
+    -lastActivity: Date
     --
-    +user(): belongsTo
-    +challenge(): belongsTo
+    +advance(): void
+    +isCompleted(): Boolean
+    +getTimeSpent(): Integer
+    +getRemainingPoints(): Integer
 }
 
 class Submission {
-    +id: bigint
-    +user_id: bigint
-    +challenge_id: bigint
-    +contenu: text
-    +feedback: text
-    +note: integer
-    +est_termine: boolean
-    +date_soumission: datetime
-    +created_at: datetime
-    +updated_at: datetime
+    -id: Long
+    -content: String
+    -file: String
+    -feedback: String
+    -grade: Integer
+    -status: String
+    -submittedAt: Date
     --
-    +user(): belongsTo
-    +challenge(): belongsTo
+    +submit(): void
+    +evaluate(grade, feedback): void
+    -isEvaluated(): Boolean
+    -isValid(): Boolean
 }
 
 ' Relationships
-User "1" -- "*" Challenge : user_challenges
+User "1" -- "*" Challenge : creates
 User "1" -- "*" FocusSession : has
 User "1" -- "*" Progression : tracks
 User "1" -- "*" Submission : submits
+User "1" -- "*" Response : answers
+
 Challenge "1" -- "*" Question : contains
-Question "1" -- "*" Reponse : has
-Challenge "*" -- "1" Categorie : belongs_to
+Challenge "1" -- "*" Submission : receives
+Challenge "1" -- "*" Progression : generates
+
+Question "1" -- "*" Response : receives
+
+Challenge "*" -- "1" Category : belongs_to
+
+Submission "1" -- "1" User : belongs_to
 Progression "1" -- "1" User : belongs_to
 Progression "1" -- "1" Challenge : belongs_to
-Submission "1" -- "1" User : belongs_to
-Submission "1" -- "1" Challenge : belongs_to
+Response "1" -- "1" User : belongs_to
+Response "1" -- "1" Question : belongs_to
 
 @enduml
