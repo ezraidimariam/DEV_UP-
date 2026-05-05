@@ -5,90 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>DEV↑UP - Level Up Your Development Skills</title>
     
-    <!-- Premium Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Simple Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     
-    <!-- Premium Styles -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Simple Styles -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #ffffff;
-            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
             min-height: 100vh;
         }
         
-        .brand-font {
-            font-family: 'Space Grotesk', sans-serif;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .mono-font {
-            font-family: 'JetBrains Mono', monospace;
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glass-card {
-            background: rgba(15, 15, 30, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
         }
         
-        .glow-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn {
+            background: #667eea;
+            color: white;
             border: none;
             border-radius: 8px;
-            padding: 10px 20px;
-            font-weight: 600;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        
-        .glow-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-        }
-        
-        .nav-item {
-            background: transparent;
-            border: none;
-            border-radius: 6px;
-            padding: 8px 16px;
+            padding: 12px 24px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             transition: background-color 0.2s ease;
         }
         
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .btn:hover {
+            background: #5a67d8;
+        }
+        
+        .nav {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px 0;
+        }
+        
+        .nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 16px;
+            transition: color 0.2s ease;
+        }
+        
+        .nav a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: #a0aec0;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
         }
         
         .feature-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             padding: 24px;
-            transition: all 0.3s ease;
+            text-align: center;
         }
         
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 16px;
+        }
+        
+        .feature-card p {
+            color: #a0aec0;
+            line-height: 1.6;
         }
         
         .hero-text {
@@ -110,41 +131,37 @@
 </head>
 <body>
         <!-- Navigation -->
-<nav class="fixed top-0 w-full z-50 glass-card border-b border-gray-800 backdrop-blur-md">
-    <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
+<nav class="nav">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
             <!-- Logo -->
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
-                    <i class="ri-code-s-slash-line text-white text-xl"></i>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 40px; height: 40px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <i class="ri-code-s-slash-line" style="color: white; font-size: 20px;"></i>
                 </div>
-                <h1 class="brand-font text-2xl font-black gradient-text">DEV↑UP</h1>
+                <h1 style="font-size: 24px; font-weight: 600; color: #667eea;">DEV↑UP</h1>
             </div>
 
             <!-- Navigation Links -->
-            <div class="hidden md:flex items-center gap-8">
+            <div style="display: flex; align-items: center; gap: 24px;">
                 @guest
-                    <a href="{{ route('login') }}" class="text-gray-300 hover:text-white transition-colors">Login</a>
-                    <a href="{{ route('register') }}" class="text-gray-300 hover:text-white transition-colors">Register</a>
+                    <a href="{{ route('login') }}">Login</a>
+                    <a href="{{ route('register') }}">Register</a>
                 @else
-                    <a href="{{ route('dashboard') }}" class="text-gray-300 hover:text-white transition-colors">Dashboard</a>
-                    <a href="{{ route('challenges.index') }}" class="text-gray-300 hover:text-white transition-colors">Challenges</a>
-                    <a href="{{ route('focus-sessions.index') }}" class="text-gray-300 hover:text-white transition-colors">Focus Sessions</a>
-                    <a href="{{ route('profile.edit') }}" class="text-gray-300 hover:text-white transition-colors">Profile</a>
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                    <a href="{{ route('challenges.index') }}">Challenges</a>
+                    <a href="{{ route('focus-sessions.index') }}">Focus Sessions</a>
+                    <a href="{{ route('profile.edit') }}">Profile</a>
                 @endguest
             </div>
 
             <!-- Auth Buttons -->
-            <div class="flex items-center gap-4">
+            <div style="display: flex; align-items: center; gap: 16px;">
                 @auth
-                    <a href="{{ url('/dashboard') }}" class="text-gray-300 hover:text-white transition-colors">
-                        Dashboard
-                    </a>
+                    <a href="{{ url('/dashboard') }}" class="btn">Dashboard</a>
                 @else
                     @if (Route::has('login'))
-                        <a href="{{ route('login') }}" class="text-gray-300 hover:text-white transition-colors">
-                            Log in
-                        </a>
+                        <a href="{{ route('login') }}" class="btn">Log in</a>
                     @endif
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}" class="glow-button px-6 py-2 rounded-lg text-white font-medium">
@@ -164,107 +181,94 @@
 
 
 <!-- Hero Section -->
-<section class="min-h-screen flex items-center justify-center relative pt-20">
-    <div class="container mx-auto px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <!-- Hero Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card mb-8">
-                <i class="ri-sparkling-line text-yellow-400"></i>
-                <span class="text-sm text-gray-300">Level up your development skills</span>
-            </div>
-
+<section class="hero">
+    <div class="container">
+        <div>
             <!-- Hero Title -->
-            <h1 class="hero-text brand-font gradient-text mb-6">
+            <h1 class="hero-text">
                 Master Code.<br>
                 Build Faster.<br>
                 Level Up.
             </h1>
 
             <!-- Hero Description -->
-            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            <p>
                 Join thousands of developers improving their skills through focused coding sessions, 
                 real-world challenges, and a supportive community.
             </p>
 
             <!-- Hero CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="glow-button px-8 py-4 rounded-xl text-white font-semibold text-lg">
-                        <span class="relative z-10 flex items-center justify-center gap-2">
-                            <i class="ri-rocket-line text-xl"></i>
-                            Start Your Journey
-                        </span>
+                    <a href="{{ route('register') }}" class="btn" style="font-size: 18px; padding: 16px 32px;">
+                        <i class="ri-rocket-line" style="margin-right: 8px;"></i>
+                        Start Your Journey
                     </a>
                 @endif
-                <a href="#features" class="glass-card px-8 py-4 rounded-xl text-white font-semibold text-lg hover:bg-white/10 transition-all">
+                <a href="#features" class="btn" style="background: rgba(255, 255, 255, 0.1); font-size: 18px; padding: 16px 32px;">
                     Learn More
                 </a>
             </div>
 
             <!-- Stats -->
-            <div class="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-                <div class="text-center">
-                    <div class="text-3xl font-bold gradient-text mb-2">10K+</div>
-                    <div class="text-gray-400 text-sm">Active Developers</div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 600px; margin: 60px auto 0;">
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold; color: #667eea; margin-bottom: 8px;">10K+</div>
+                    <div style="color: #a0aec0; font-size: 14px;">Active Developers</div>
                 </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold gradient-text mb-2">500+</div>
-                    <div class="text-gray-400 text-sm">Coding Challenges</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold; color: #667eea; margin-bottom: 8px;">500+</div>
+                    <div style="color: #a0aec0; font-size: 14px;">Coding Challenges</div>
                 </div>
-                <div class="text-center">
-                    <div class="text-3xl font-bold gradient-text mb-2">50K+</div>
-                    <div class="text-gray-400 text-sm">Focus Hours</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold; color: #667eea; margin-bottom: 8px;">50K+</div>
+                    <div style="color: #a0aec0; font-size: 14px;">Focus Hours</div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator">
-        <i class="ri-arrow-down-line text-2xl text-gray-500"></i>
-    </div>
 </section>
 
 <!-- Features Section -->
-<section id="features" class="py-20 relative">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold gradient-text mb-4">Powerful Features</h2>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+<section id="features" style="padding: 80px 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 60px;">
+            <h2 style="font-size: 36px; font-weight: 600; color: #667eea; margin-bottom: 16px;">Powerful Features</h2>
+            <p style="font-size: 18px; color: #a0aec0; max-width: 600px; margin: 0 auto;">
                 Everything you need to take your development skills to the next level
             </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="features">
             <!-- Feature 1 -->
-            <div class="feature-card glass-card rounded-2xl p-8 text-center">
-                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center mx-auto mb-6">
-                    <i class="ri-timer-line text-white text-2xl"></i>
+            <div class="feature-card">
+                <div style="width: 64px; height: 64px; background: #667eea; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                    <i class="ri-timer-line" style="color: white; font-size: 24px;"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-4">Focus Sessions</h3>
-                <p class="text-gray-400">
+                <h3>Focus Sessions</h3>
+                <p>
                     Track your coding time with Pomodoro-style focus sessions designed to maximize productivity and prevent burnout.
                 </p>
             </div>
 
             <!-- Feature 2 -->
-            <div class="feature-card glass-card rounded-2xl p-8 text-center">
-                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mx-auto mb-6">
-                    <i class="ri-code-line text-white text-2xl"></i>
+            <div class="feature-card">
+                <div style="width: 64px; height: 64px; background: #764ba2; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                    <i class="ri-code-line" style="color: white; font-size: 24px;"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-4">Coding Challenges</h3>
-                <p class="text-gray-400">
+                <h3>Coding Challenges</h3>
+                <p>
                     Test your skills with real-world coding challenges across different languages and difficulty levels.
                 </p>
             </div>
 
             <!-- Feature 3 -->
-            <div class="feature-card glass-card rounded-2xl p-8 text-center">
-                <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-6">
-                    <i class="ri-line-chart-line text-white text-2xl"></i>
+            <div class="feature-card">
+                <div style="width: 64px; height: 64px; background: #27ae60; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
+                    <i class="ri-line-chart-line" style="color: white; font-size: 24px;"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-4">Progress Tracking</h3>
-                <p class="text-gray-400">
+                <h3>Progress Tracking</h3>
+                <p>
                     Monitor your improvement with detailed analytics and insights about your coding patterns and performance.
                 </p>
             </div>
@@ -273,19 +277,17 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-20 relative">
-    <div class="container mx-auto px-6">
-        <div class="glass-card rounded-3xl p-12 text-center max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold gradient-text mb-4">Ready to Level Up?</h2>
-            <p class="text-xl text-gray-400 mb-8">
+<section style="padding: 80px 0;">
+    <div class="container">
+        <div class="card" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 36px; font-weight: 600; color: #667eea; margin-bottom: 16px;">Ready to Level Up?</h2>
+            <p style="font-size: 18px; color: #a0aec0; margin-bottom: 32px;">
                 Join thousands of developers who are already improving their skills with DEV↑UP
             </p>
             @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="glow-button px-8 py-4 rounded-xl text-white font-semibold text-lg inline-block">
-                    <span class="relative z-10 flex items-center justify-center gap-2">
-                        <i class="ri-user-add-line text-xl"></i>
-                        Get Started Free
-                    </span>
+                <a href="{{ route('register') }}" class="btn" style="font-size: 18px; padding: 16px 32px;">
+                    <i class="ri-user-add-line" style="margin-right: 8px;"></i>
+                    Get Started Free
                 </a>
             @endif
         </div>
@@ -293,27 +295,27 @@
 </section>
 
                     <!-- Footer -->
-<footer class="py-12 border-t border-gray-800">
-    <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center gap-3 mb-4 md:mb-0">
-                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
-                    <i class="ri-code-s-slash-line text-white text-sm"></i>
+<footer style="padding: 48px 0; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                <div style="width: 32px; height: 32px; background: #667eea; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                    <i class="ri-code-s-slash-line" style="color: white; font-size: 14px;"></i>
                 </div>
-                <h3 class="brand-font text-lg font-black gradient-text">DEV↑UP</h3>
+                <h3 style="font-size: 18px; font-weight: 600; color: #667eea;">DEV↑UP</h3>
             </div>
-            <div class="text-gray-400 text-sm">
+            <div style="color: #a0aec0; font-size: 14px;">
                 © 2024 DEV↑UP. Level up your development skills.
             </div>
-            <div class="flex gap-4 mt-4 md:mt-0">
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="ri-github-fill text-xl"></i>
+            <div style="display: flex; gap: 16px;">
+                <a href="#" style="color: #a0aec0;">
+                    <i class="ri-github-fill" style="font-size: 18px;"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="ri-twitter-fill text-xl"></i>
+                <a href="#" style="color: #a0aec0;">
+                    <i class="ri-twitter-fill" style="font-size: 18px;"></i>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                    <i class="ri-linkedin-fill text-xl"></i>
+                <a href="#" style="color: #a0aec0;">
+                    <i class="ri-linkedin-fill" style="font-size: 18px;"></i>
                 </a>
             </div>
         </div>

@@ -1,0 +1,137 @@
+@startuml DEV_UP_Simplified_Class_Diagram
+
+!theme plain
+skinparam classAttributeIconSize 0
+
+class User {
+    +id: bigint
+    +name: string
+    +email: string
+    +password: string
+    +level: integer
+    +points: integer
+    +role: string
+    +serie_actuelle: string
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +challenges(): hasMany
+    +focusSessions(): hasMany
+    +progressions(): hasMany
+    +submissions(): hasMany
+    +isFormateur(): boolean
+    +isApprenant(): boolean
+    +isAdmin(): boolean
+}
+
+class Challenge {
+    +id: bigint
+    +categorie_id: bigint
+    +titre: string
+    +description: text
+    +difficulte: string
+    +valeur_points: integer
+    +date_limite: datetime
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +categorie(): belongsTo
+    +questions(): hasMany
+    +submissions(): hasMany
+    +userChallenges(): hasMany
+}
+
+class FocusSession {
+    +id: bigint
+    +user_id: bigint
+    +focus_duration: integer
+    +break_duration: integer
+    +date_session: datetime
+    +is_completed: boolean
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +user(): belongsTo
+}
+
+class Categorie {
+    +id: bigint
+    +nom: string
+    +description: text
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +challenges(): hasMany
+}
+
+class Question {
+    +id: bigint
+    +challenge_id: bigint
+    +enonce: text
+    +type: string
+    +points: integer
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +challenge(): belongsTo
+    +reponses(): hasMany
+}
+
+class Reponse {
+    +id: bigint
+    +question_id: bigint
+    +user_id: bigint
+    +contenu: text
+    +est_correcte: boolean
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +question(): belongsTo
+    +user(): belongsTo
+}
+
+class Progression {
+    +id: bigint
+    +user_id: bigint
+    +challenge_id: bigint
+    +niveau_actuel: integer
+    +points_obtenus: integer
+    +date_debut: datetime
+    +date_fin: datetime
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +user(): belongsTo
+    +challenge(): belongsTo
+}
+
+class Submission {
+    +id: bigint
+    +user_id: bigint
+    +challenge_id: bigint
+    +contenu: text
+    +feedback: text
+    +note: integer
+    +est_termine: boolean
+    +date_soumission: datetime
+    +created_at: datetime
+    +updated_at: datetime
+    --
+    +user(): belongsTo
+    +challenge(): belongsTo
+}
+
+' Relationships
+User "1" -- "*" Challenge : user_challenges
+User "1" -- "*" FocusSession : has
+User "1" -- "*" Progression : tracks
+User "1" -- "*" Submission : submits
+Challenge "1" -- "*" Question : contains
+Question "1" -- "*" Reponse : has
+Challenge "*" -- "1" Categorie : belongs_to
+Progression "1" -- "1" User : belongs_to
+Progression "1" -- "1" Challenge : belongs_to
+Submission "1" -- "1" User : belongs_to
+Submission "1" -- "1" Challenge : belongs_to
+
+@enduml
