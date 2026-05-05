@@ -131,7 +131,7 @@
         </div>
 
         <!-- Login Form -->
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" onsubmit="console.log('Form submitting...'); return true;">
             @csrf
             
             <!-- Error Messages -->
@@ -184,7 +184,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn">
+            <button type="submit" class="btn" style="cursor: pointer;" onclick="console.log('Button clicked!');">
                 Sign In
             </button>
         </form>
