@@ -61,20 +61,13 @@
             box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
         }
         
-        .glow-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);
-        }
-        
+                
         .nav-link {
             transition: all 0.3s ease;
             position: relative;
         }
         
-        .nav-link:hover {
-            color: #667eea;
-        }
-        
+                
         .nav-link.active {
             color: #667eea;
         }
@@ -90,14 +83,9 @@
         }
         
         .student-card {
-            transition: all 0.3s ease;
         }
         
-        .student-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
-        }
-        
+                
         .progress-bar {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -119,63 +107,9 @@
             font-weight: 600;
         }
         
-        .floating-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            opacity: 0.1;
-            animation: float 20s infinite ease-in-out;
-        }
-        
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            left: 5%;
-            animation-delay: 0s;
-        }
-        
-        .shape-2 {
-            width: 150px;
-            height: 150px;
-            top: 60%;
-            right: 10%;
-            animation-delay: 5s;
-        }
-        
-        .shape-3 {
-            width: 100px;
-            height: 100px;
-            bottom: 20%;
-            left: 50%;
-            animation-delay: 10s;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(120deg); }
-            66% { transform: translateY(20px) rotate(240deg); }
-        }
-    </style>
+            </style>
 </head>
 <body>
-    <!-- Floating Background Shapes -->
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
-    </div>
-
     <!-- Navigation -->
     <nav class="glass-card sticky top-0 z-50 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -186,7 +120,7 @@
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('formateur.dashboard') }}" class="nav-link text-white hover:text-gray-300">
+                    <a href="{{ route('formateur.dashboard') }}" class="nav-link text-white">
                         <i class="ri-dashboard-line mr-2"></i>Dashboard
                     </a>
                     <a href="{{ route('formateur.submissions') }}" class="nav-link text-white hover:text-gray-300">
@@ -201,12 +135,12 @@
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('profile.edit') }}" class="text-white hover:text-gray-300">
+                    <a href="{{ route('profile.edit') }}" class="text-white">
                         <i class="ri-user-line text-xl"></i>
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-white hover:text-gray-300">
+                        <button type="submit" class="text-white">
                             <i class="ri-logout-box-line text-xl"></i>
                         </button>
                     </form>

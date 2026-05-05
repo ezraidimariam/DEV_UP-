@@ -80,68 +80,17 @@
                 0 6px 20px rgba(102, 126, 234, 0.3);
         }
         
-        .floating-shapes {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: -1;
-        }
-        
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(25px);
-            opacity: 0.2;
-        }
-        
-        .shape-1 {
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            top: -125px;
-            right: -125px;
-            animation: float 8s ease-in-out infinite;
-        }
-        
-        .shape-2 {
-            width: 180px;
-            height: 180px;
-            background: linear-gradient(135deg, #f093fb, #f5576c);
-            bottom: -90px;
-            left: -90px;
-            animation: float 12s ease-in-out infinite reverse;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(90deg); }
-        }
-        
         .nav-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .nav-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
         }
         
         .challenge-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
         }
         
-        .challenge-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-        
+                
         .difficulty-easy {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
@@ -159,12 +108,6 @@
     </style>
 </head>
 <body>
-    <!-- Floating Background Shapes -->
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-    </div>
-
     <!-- Navigation Header -->
     <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-white/10">
         <div class="max-w-7xl mx-auto px-6 py-4">
@@ -177,11 +120,11 @@
                 </div>
                 
                 <div class="flex items-center gap-6">
-                    <a href="{{ route('dashboard') }}" class="nav-item px-4 py-2 rounded-xl text-gray-300 hover:text-white transition-all">
+                    <a href="{{ route('dashboard') }}" class="nav-item px-4 py-2 rounded-xl text-gray-300">
                         <i class="ri-dashboard-line mr-2"></i>
                         Dashboard
                     </a>
-                    <a href="{{ route('challenges.index') }}" class="nav-item px-4 py-2 rounded-xl text-white hover:text-purple-300 transition-all">
+                    <a href="{{ route('challenges.index') }}" class="nav-item px-4 py-2 rounded-xl text-white">
                         <i class="ri-trophy-line mr-2"></i>
                         Challenges
                     </a>

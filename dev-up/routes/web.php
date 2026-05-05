@@ -33,6 +33,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/challenges/{challenge}/submit', [ChallengeController::class, 'submit'])->name('challenges.submit');
     
     // Formateur (Trainer) Routes
+    Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('dashboard');
+        Route::get('/challenges', [App\Http\Controllers\AdminController::class, 'challenges'])->name('challenges');
+        Route::get('/challenges/create', [App\Http\Controllers\AdminController::class, 'createChallenge'])->name('challenges.create');
+        Route::post('/challenges', [App\Http\Controllers\AdminController::class, 'storeChallenge'])->name('challenges.store');
+        Route::get('/challenges/{challenge}/edit', [App\Http\Controllers\AdminController::class, 'editChallenge'])->name('challenges.edit');
+        Route::put('/challenges/{challenge}', [App\Http\Controllers\AdminController::class, 'updateChallenge'])->name('challenges.update');
+        Route::delete('/challenges/{challenge}', [App\Http\Controllers\AdminController::class, 'deleteChallenge'])->name('challenges.delete');
+    });
+
     Route::middleware(['auth', 'role:formateur'])->prefix('formateur')->name('formateur.')->group(function () {
         Route::get('/dashboard', [FormateurDashboardController::class, 'index'])->name('dashboard');
         Route::get('/submissions', [FormateurDashboardController::class, 'submissions'])->name('submissions');

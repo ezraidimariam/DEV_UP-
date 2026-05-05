@@ -102,7 +102,7 @@
                 </div>
                 
                 <div class="flex items-center gap-6">
-                    <a href="{{ route('dashboard') }}" class="nav-item px-4 py-2 rounded-xl text-white">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-item px-4 py-2 rounded-xl text-white">
                         <i class="ri-dashboard-line mr-2"></i>
                         Admin Dashboard
                     </a>
