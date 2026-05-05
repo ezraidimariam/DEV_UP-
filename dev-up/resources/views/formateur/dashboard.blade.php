@@ -57,10 +57,17 @@
             border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .glow-button:hover {
+            opacity: 0.9;
         }
         
         .nav-link {
             position: relative;
+            cursor: pointer;
         }
         
         .nav-link.active {
@@ -105,12 +112,12 @@
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('profile.edit') }}" class="text-white">
+                    <a href="{{ route('profile.edit') }}" class="text-white" style="cursor: pointer;">
                         <i class="ri-user-line text-xl"></i>
                     </a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="text-white">
+                        <button type="submit" class="text-white" style="cursor: pointer;">
                             <i class="ri-logout-box-line text-xl"></i>
                         </button>
                     </form>
@@ -180,7 +187,7 @@
             <div class="glass-card rounded-2xl p-6">
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-xl font-semibold text-white">Pending Submissions</h2>
-                    <a href="{{ route('formateur.submissions') }}" class="text-blue-400 text-sm">
+                    <a href="{{ route('formateur.submissions') }}" class="text-blue-400 text-sm" style="cursor: pointer;">
                         View All <i class="ri-arrow-right-line"></i>
                     </a>
                 </div>
@@ -195,7 +202,7 @@
                                         <p class="text-sm text-gray-400 mb-2">by {{ $submission->user->name }}</p>
                                         <p class="text-xs text-gray-500">{{ $submission->created_at->diffForHumans() }}</p>
                                     </div>
-                                    <a href="{{ route('formateur.review', $submission) }}" class="glow-button px-4 py-2 rounded-lg text-sm">
+                                    <a href="{{ route('formateur.review', $submission) }}" class="glow-button px-4 py-2 rounded-lg text-sm" style="display: inline-block; text-decoration: none;">
                                         Review
                                     </a>
                                 </div>
@@ -214,7 +221,7 @@
             <div class="glass-card rounded-2xl p-6">
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-xl font-semibold text-white">Recent Feedback</h2>
-                    <a href="{{ route('formateur.feedback') }}" class="text-blue-400 text-sm">
+                    <a href="{{ route('formateur.feedback') }}" class="text-blue-400 text-sm" style="cursor: pointer;">
                         View All <i class="ri-arrow-right-line"></i>
                     </a>
                 </div>
@@ -247,7 +254,7 @@
         <div class="glass-card rounded-2xl p-6 mt-8">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-semibold text-white">Top Performing Students</h2>
-                <a href="{{ route('formateur.students') }}" class="text-blue-400 text-sm">
+                <a href="{{ route('formateur.students') }}" class="text-blue-400 text-sm" style="cursor: pointer;">
                     View All <i class="ri-arrow-right-line"></i>
                 </a>
             </div>
@@ -274,7 +281,7 @@
                                     <span class="text-blue-400 font-semibold">{{ $student->points }}</span>
                                 </div>
                             </div>
-                            <a href="{{ route('formateur.student.progress', $student) }}" class="mt-3 text-blue-400 text-sm">
+                            <a href="{{ route('formateur.student.progress', $student) }}" class="mt-3 text-blue-400 text-sm" style="cursor: pointer;">
                                 View Progress <i class="ri-arrow-right-line"></i>
                             </a>
                         </div>

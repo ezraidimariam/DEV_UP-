@@ -26,4 +26,9 @@ class Submission extends Model
     {
         return $this->belongsTo(Challenge::class);
     }
+
+    public function feedback()
+    {
+        return $this->hasOne(Feedback::class);
+    }
 }
