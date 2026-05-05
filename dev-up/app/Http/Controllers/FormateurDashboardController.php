@@ -73,6 +73,14 @@ class FormateurDashboardController extends Controller
 
     public function submitFeedback(Request $request, Submission $submission)
     {
+        // Debug: Log incoming data
+        \Log::info('Submit feedback called', [
+            'submission_id' => $submission->id,
+            'commentaire' => $request->commentaire,
+            'note' => $request->note,
+            'user_id' => Auth::id()
+        ]);
+
         $request->validate([
             'commentaire' => 'required|string',
             'note' => 'required|integer|min:0|max:20',
@@ -83,10 +91,12 @@ class FormateurDashboardController extends Controller
         $feedback = $user->ajouterFeedback($submission->id, $request->commentaire, $request->note);
 
         if ($feedback) {
+            \Log::info('Feedback submitted successfully', ['feedback_id' => $feedback->id]);
             return redirect()->route('formateur.submissions')
                 ->with('success', 'Feedback submitted successfully!');
         }
 
+        \Log::error('Failed to submit feedback');
         return back()->with('error', 'Failed to submit feedback.');
     }
 
