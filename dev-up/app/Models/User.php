@@ -107,6 +107,11 @@ class User extends Authenticatable
     // Methods for Apprenant role
     public function voirProgression()
     {
+        $totalChallenges = UserChallenge::where('user_id', $this->id)->count();
+        $completedChallenges = UserChallenge::where('user_id', $this->id)->where('status', 'termine')->count();
+        $totalSubmissions = Submission::where('user_id', $this->id)->count();
+        $acceptedSubmissions = Submission::where('user_id', $this->id)->where('status', 'valide')->count();
+        
         return [
             'points_actuels' => $this->points,
             'niveau_experience' => $this->level,
@@ -114,6 +119,16 @@ class User extends Authenticatable
             'challenges_termine' => $this->userChallenges()->where('status', 'termine')->count(),
             'sessions_terminees' => $this->focusSessions()->where('is_completed', true)->count(),
             'badges_gagnes' => $this->badges()->count(),
+            // Additional data for formateur dashboard
+            'total_challenges' => $totalChallenges,
+            'completed_challenges' => $completedChallenges,
+            'completion_rate' => $totalChallenges > 0 ? round(($completedChallenges / $totalChallenges) * 100, 2) : 0,
+            'total_submissions' => $totalSubmissions,
+            'accepted_submissions' => $acceptedSubmissions,
+            'success_rate' => $totalSubmissions > 0 ? round(($acceptedSubmissions / $totalSubmissions) * 100, 2) : 0,
+            'current_level' => $this->level,
+            'current_points' => $this->points,
+            'points_to_next_level' => ($this->level + 1) * 100 - $this->points,
         ];
     }
 

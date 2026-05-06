@@ -157,7 +157,7 @@ class FormateurDashboardController extends Controller
                     ? ($challenge->user_challenges_count_where_status_termine / $challenge->user_challenges_count) * 100 
                     : 0;
                 return [
-                    'title' => $challenge->title,
+                    'title' => $challenge->titre,
                     'total_attempts' => $challenge->user_challenges_count,
                     'completions' => $challenge->user_challenges_count_where_status_termine,
                     'completion_rate' => round($completionRate, 2),
