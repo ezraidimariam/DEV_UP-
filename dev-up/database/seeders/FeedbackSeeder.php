@@ -50,7 +50,7 @@ class FeedbackSeeder extends Seeder
         $this->command->info('Feedback seeded successfully!');
     }
     
-    private function getPositiveCommentaire(string $difficulty): string
+    private function getPositiveCommentaire($difficulty): string
     {
         $commentaires = [
             'facile' => [
@@ -68,13 +68,31 @@ class FeedbackSeeder extends Seeder
                 "Fantastique! Votre solution démontre une excellente compréhension des algorithmes complexes.",
                 "Remarquable! Vous avez résolu un problème difficile avec une approche très professionnelle.",
             ],
+            'easy' => [
+                "Great work! Perfect solution for this difficulty level. Keep it up!",
+                "Excellent! You've mastered the basic concepts well. The code is clean and efficient.",
+                "Very good approach! The solution is simple and correct. Ready for more challenges?",
+            ],
+            'medium' => [
+                "Beautiful work! You've understood intermediate concepts well. The solution is well-structured.",
+                "Excellent! Your approach is correct and the code is of good quality. Continue your progress.",
+                "Bravo! You solved a medium-level problem with an elegant solution.",
+            ],
+            'hard' => [
+                "Impressive! You've mastered an advanced concept with an optimal solution. Excellent work!",
+                "Fantastic! Your solution demonstrates excellent understanding of complex algorithms.",
+                "Remarkable! You solved a difficult problem with a very professional approach.",
+            ],
         ];
         
-        $difficultyComments = $commentaires[$difficulty] ?? $commentaires['facile'];
+        // Handle null or missing difficulty
+        $difficulty = $difficulty ?: 'easy';
+        
+        $difficultyComments = $commentaires[$difficulty] ?? $commentaires['easy'];
         return $difficultyComments[array_rand($difficultyComments)];
     }
     
-    private function getNegativeCommentaire(string $difficulty): string
+    private function getNegativeCommentaire($difficulty): string
     {
         $commentaires = [
             'facile' => [
@@ -92,9 +110,27 @@ class FeedbackSeeder extends Seeder
                 "La solution manque d'optimisation. Pour ce niveau de difficulté, une approche plus efficace est nécessaire.",
                 "Le code ne gère pas correctement tous les cas. Les problèmes complexes nécessitent plus de rigueur.",
             ],
+            'easy' => [
+                "Your solution has basic errors. Review the fundamental concepts and try again.",
+                "The approach is not correct. Take time to understand the problem before coding.",
+                "The code doesn't work as expected. Test it with different use cases.",
+            ],
+            'medium' => [
+                "Your solution is incomplete. Important edge cases are missing. Think about all possibilities.",
+                "The algorithm is not optimal. Try a more efficient approach for this type of problem.",
+                "The code has logical errors. Debug step by step to identify issues.",
+            ],
+            'hard' => [
+                "Your approach is not adapted to the problem's complexity. Review advanced algorithms.",
+                "The solution lacks optimization. For this difficulty level, a more efficient approach is needed.",
+                "The code doesn't handle all cases correctly. Complex problems require more rigor.",
+            ],
         ];
         
-        $difficultyComments = $commentaires[$difficulty] ?? $commentaires['facile'];
+        // Handle null or missing difficulty
+        $difficulty = $difficulty ?: 'easy';
+        
+        $difficultyComments = $commentaires[$difficulty] ?? $commentaires['easy'];
         return $difficultyComments[array_rand($difficultyComments)];
     }
 }

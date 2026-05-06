@@ -67,15 +67,21 @@ class SubmissionSeeder extends Seeder
         return array_key_first($weights);
     }
     
-    private function generateSampleSolution(string $difficulty): string
+    private function generateSampleSolution($difficulty): string
     {
         $solutions = [
             'facile' => "```python\n# Solution simple\ndef hello_world():\n    print('Hello, World!')\n    return True\n\nhello_world()\n```",
             'moyen' => "```python\n# Solution intermédiaire\ndef calculate_sum(numbers):\n    total = 0\n    for num in numbers:\n        total += num\n    return total\n\n# Test\nresult = calculate_sum([1, 2, 3, 4, 5])\nprint(f'Sum: {result}')\n```",
             'difficile' => "```python\n# Solution avancée\nclass LinkedList:\n    def __init__(self):\n        self.head = None\n    \n    def append(self, data):\n        new_node = Node(data)\n        if not self.head:\n            self.head = new_node\n            return\n        last = self.head\n        while last.next:\n            last = last.next\n        last.next = new_node\n    \n    def display(self):\n        elements = []\n        current = self.head\n        while current:\n            elements.append(str(current.data))\n            current = current.next\n        print(' -> '.join(elements))\n\nclass Node:\n    def __init__(self, data):\n        self.data = data\n        self.next = None\n\n# Test\nll = LinkedList()\nll.append(1)\nll.append(2)\nll.append(3)\nll.display()\n```",
+            'easy' => "```python\n# Easy solution\ndef solution(arr):\n    return [x**2 for x in arr]\n\n# Test\nprint(solution([1, 2, 3]))\n```",
+            'medium' => "```python\n# Medium solution\ndef find_duplicates(arr):\n    seen = set()\n    duplicates = set()\n    for num in arr:\n        if num in seen:\n            duplicates.add(num)\n        seen.add(num)\n    return list(duplicates)\n\n# Test\nprint(find_duplicates([1, 2, 3, 2, 4, 5, 3]))\n```",
+            'hard' => "```python\n# Hard solution\ndef quick_sort(arr):\n    if len(arr) <= 1:\n        return arr\n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    return quick_sort(left) + middle + quick_sort(right)\n\n# Test\nprint(quick_sort([3, 6, 8, 10, 1, 2, 1]))\n```",
         ];
         
-        return $solutions[$difficulty] ?? $solutions['facile'];
+        // Handle null or missing difficulty
+        $difficulty = $difficulty ?: 'easy';
+        
+        return $solutions[$difficulty] ?? $solutions['easy'];
     }
     
     private function getPositiveFeedback(): string

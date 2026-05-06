@@ -184,7 +184,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn" style="cursor: pointer;" onclick="console.log('Button clicked!');">
+            <button type="submit" class="btn" style="cursor: pointer;">
                 Sign In
             </button>
         </form>

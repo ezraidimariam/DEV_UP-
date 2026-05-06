@@ -29,8 +29,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/challenges', [ChallengeController::class, 'index'])->name('challenges.index');
     Route::get('/challenges/my', [ChallengeController::class, 'myChallenges'])->name('challenges.my');
     Route::get('/challenges/{challenge}', [ChallengeController::class, 'show'])->name('challenges.show');
+    Route::get('/challenges/{challenge}/submit', [ChallengeController::class, 'submitForm'])->name('challenges.submit.form');
     Route::post('/challenges/{challenge}/start', [ChallengeController::class, 'start'])->name('challenges.start');
     Route::post('/challenges/{challenge}/submit', [ChallengeController::class, 'submit'])->name('challenges.submit');
+    Route::post('/challenges/{challenge}/run-code', [ChallengeController::class, 'runCode'])->name('challenges.run-code');
+    Route::post('/challenges/{challenge}/reset-code', [ChallengeController::class, 'resetCode'])->name('challenges.reset-code');
     
     // Formateur (Trainer) Routes
     Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {

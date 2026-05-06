@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>DEV↑UP - {{ $challenge->title ?? 'Challenge' }}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -287,6 +288,7 @@
                                 </div>
                                 <div class="flex-1 p-4">
                                     <textarea 
+                                        id="codeEditor"
                                         class="w-full bg-transparent text-white outline-none resize-none font-mono text-sm"
                                         rows="10"
                                         placeholder="// Write your code here..."
@@ -364,15 +366,15 @@
                             Actions
                         </h3>
                         <div class="space-y-3">
-                            <button class="glow-button w-full py-3 rounded-xl text-white font-medium">
+                            <button id="runCodeBtn" class="glow-button w-full py-3 rounded-xl text-white font-medium">
                                 <i class="ri-run-line mr-2"></i>
                                 Run Code
                             </button>
-                            <button class="nav-item w-full py-3 rounded-xl text-white font-medium hover:bg-white/10">
+                            <a href="{{ route('challenges.submit.form', $challenge->id) }}" class="nav-item w-full py-3 rounded-xl text-white font-medium hover:bg-white/10 text-center block">
                                 <i class="ri-send-plane-line mr-2"></i>
                                 Submit Solution
-                            </button>
-                            <button class="nav-item w-full py-3 rounded-xl text-gray-300 font-medium hover:text-white hover:bg-white/10">
+                            </a>
+                            <button id="resetBtn" class="nav-item w-full py-3 rounded-xl text-gray-300 font-medium hover:text-white hover:bg-white/10">
                                 <i class="ri-refresh-line mr-2"></i>
                                 Reset Code
                             </button>
@@ -412,6 +414,143 @@
             </div>
         </div>
     </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const codeEditor = document.getElementById('codeEditor');
+    const runCodeBtn = document.getElementById('runCodeBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const submitForm = document.getElementById('submitForm');
+    const solutionInput = document.getElementById('solutionInput');
+    const challengeId = '{{ $challenge->id }}';
+
+    // Run Code functionality
+    runCodeBtn.addEventListener('click', async function() {
+        const code = codeEditor.value;
+        
+        if (!code.trim()) {
+            alert('Please write some code before running!');
+            return;
+        }
+
+        runCodeBtn.disabled = true;
+        runCodeBtn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Running...';
+
+        try {
+            const response = await fetch(`/challenges/${challengeId}/run-code`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || document.querySelector('input[name="_token"]').value
+                },
+                body: JSON.stringify({ code: code })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                updateTestCases(data.results);
+                showNotification('Code executed successfully!', 'success');
+            } else {
+                showNotification('Error executing code', 'error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            showNotification('Network error. Please try again.', 'error');
+        } finally {
+            runCodeBtn.disabled = false;
+            runCodeBtn.innerHTML = '<i class="ri-run-line mr-2"></i>Run Code';
+        }
+    });
+
+    // Submit Solution functionality
+    submitBtn.addEventListener('click', function() {
+        const code = codeEditor.value;
+        
+        if (!code.trim()) {
+            alert('Please write some code before submitting!');
+            return;
+        }
+
+        if (confirm('Are you sure you want to submit this solution?')) {
+            solutionInput.value = code;
+            submitForm.submit();
+        }
+    });
+
+    // Reset Code functionality
+    resetBtn.addEventListener('click', async function() {
+        if (confirm('Are you sure you want to reset your code?')) {
+            resetBtn.disabled = true;
+            resetBtn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Resetting...';
+
+            try {
+                const response = await fetch(`/challenges/${challengeId}/reset-code`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || document.querySelector('input[name="_token"]').value
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    codeEditor.value = data.code;
+                    showNotification('Code reset successfully!', 'success');
+                } else {
+                    showNotification('Error resetting code', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Network error. Please try again.', 'error');
+            } finally {
+                resetBtn.disabled = false;
+                resetBtn.innerHTML = '<i class="ri-refresh-line mr-2"></i>Reset Code';
+            }
+        }
+    });
+
+    // Helper functions
+    function updateTestCases(results) {
+        const testCasesContainer = document.querySelector('.space-y-4');
+        if (testCasesContainer) {
+            results.forEach((result, index) => {
+                const testCaseDiv = testCasesContainer.children[index];
+                if (testCaseDiv) {
+                    const statusSpan = testCaseDiv.querySelector('.text-xs');
+                    if (statusSpan) {
+                        statusSpan.className = `text-xs px-2 py-1 rounded ${
+                            result.status === 'pass' 
+                                ? 'bg-green-500/20 text-green-400' 
+                                : 'bg-red-500/20 text-red-400'
+                        }`;
+                        statusSpan.textContent = result.status === 'pass' ? 'Pass' : 'Fail';
+                    }
+                }
+            });
+        }
+    }
+
+    function showNotification(message, type) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg text-white font-medium z-50 ${
+            type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        }`;
+        notification.textContent = message;
+        
+        document.body.appendChild(notification);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+});
+</script>
+
 </body>
 </html>
                 <div class="card p-8">
